@@ -14,4 +14,10 @@ const PrimaryButton :FC<PrimaryButtonProps>  = ({ title, className = "" }) => {
     </button>    
 }
 
+export const MediumButton :FC<PrimaryButtonProps> = ({ title, className = "" }) => {
+    return <button className={`bg-primary rounded-primary text-base px-3 py-1 pt-2 text-white font-primary ${className}`}>
+    { title }
+</button>    
+}
+
 export default PrimaryButton;

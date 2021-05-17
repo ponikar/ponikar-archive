@@ -5,7 +5,8 @@ module.exports = {
       primary: "#222222",
       background: "#F3F0F0",
       black: "#000",
-      white: "#fff"
+      white: "#fff",
+      highlight: "#848484"
     },
     borderRadius: {
       primary: "2.5px"

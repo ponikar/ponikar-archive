@@ -8,7 +8,9 @@ import Section from "../section/section.component";
 const BlogSection = () => {
     return <Section isContainer>
         <SectionTitle title="My Thoughts" />
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid lg:grid-cols-3 grid-cols-1 mt-12 gap-5">
+        <BlogPreviewItem title="Why JavaScript?" article="Lorem Ipsum is simply dummy text of the printing and typesetting industry...." />
+        <BlogPreviewItem title="Why JavaScript?" article="Lorem Ipsum is simply dummy text of the printing and typesetting industry...." />
         <BlogPreviewItem title="Why JavaScript?" article="Lorem Ipsum is simply dummy text of the printing and typesetting industry...." />
         </div>
     </Section>

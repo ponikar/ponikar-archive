@@ -1,3 +1,4 @@
+import Footer from "../src/components/Footer/footer.component"
 import Header from "../src/components/Header/header.component"
 import AboutSection from "../src/components/Index/about-section.component"
 import BlogSection from "../src/components/Index/blogs-section.component"
@@ -14,6 +15,7 @@ const Index = () => {
          <AboutSection />
          <StackTech />
          <BlogSection />
+         <Footer />
         </>
     )
 }
