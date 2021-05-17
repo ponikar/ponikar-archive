@@ -1,16 +1,22 @@
-html,
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Tajawal:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: #F3F0F0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+
+.font-primary {
+    font-family: 'Tajawal', sans-serif;
 }
 
-* {
-  box-sizing: border-box;
+.font-secondary {
+    font-family: 'Major Mono Display', monospace;
+}
+
+.a-line-highlight {
+    line-height: 22.5px;
 }
