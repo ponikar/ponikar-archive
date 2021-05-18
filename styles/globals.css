@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Tajawal:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Tajawal:wght@500&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,6 +12,9 @@ body {
     margin: 0;
 }
 
+.bold {
+    font-weight: 500;
+}
 
 .font-primary {
     font-family: 'Tajawal', sans-serif;
@@ -23,7 +25,7 @@ body {
 }
 
 .a-line-highlight {
-    line-height: 22.5px;
+    line-height: 20px;
 }
 
 

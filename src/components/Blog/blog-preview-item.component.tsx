@@ -17,7 +17,7 @@ const BlogPreviewItem :FC<BlogPreviewProps> = ({ title, article, created_at }) =
         <article className="py-4 px-4">
         <h2 className="text-xl mb-3 font-secondary"> {title} </h2>
         <span className="text-sm text-highlight"> 23th March, 2020 </span>
-        <p className="a-line-highlight"> {article} </p>
+        <p className="a-line-highlight font-primary"> {article} </p>
 
         <MediumButton className="mt-4"  title="Read More" />
         </article>
