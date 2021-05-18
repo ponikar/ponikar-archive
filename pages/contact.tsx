@@ -8,7 +8,7 @@ import contactStyle from "../styles/contact.module.css"
 const Contact :FC<{}> = () => {
     return <PageBase>
         <section className={`${contactStyle.container} flex justify-center items-center`}>
-            <div className="bg-background rounded-highlight py-12 lg:w-6/12 w-11/12">
+            <div className="bg-background rounded-highlight py-12 lg:mt-0 md:mt-0 mt-56 lg:w-6/12 w-11/12">
                 <h2 className="font-secondary text-xl text-center"> reach me out </h2>
                 <form className="lg:w-8/12 w-10/12 mx-auto">
                     <TextInput label="What's your Name?" placeholder="Jake Peralata" />
