@@ -2,6 +2,7 @@ import Instagram from "../../../public/assets/svgs/instagram.svg"
 import Twitter from "../../../public/assets/svgs/twitter.svg"
 import Linkedin from "../../../public/assets/svgs/linkedin.svg"
 import FooterSubscribe from "./footer-subscribe.component"
+import FooterLink from "./footer-link.component"
 
 
 
@@ -9,11 +10,11 @@ import FooterSubscribe from "./footer-subscribe.component"
 export const FooterLeftSubSection = () => {
     return <div className="flex flex-col">
     <h2 className="text-lg mt-5 mb-2"> Links  </h2>
-         <a className="mb-1">Home</a>
-         <a className="mb-1">About Me</a>
-         <a className="mb-1">Projects</a>
-         <a className="mb-1">Blogs</a>
-         <a className="mb-1">Stack Tech</a>
+         <FooterLink href="" title="Home" />
+         <FooterLink href="" title="About Me"/>
+         <FooterLink href="" title="Projects"/>
+         <FooterLink href="" title="Blogs"/>
+         <FooterLink href="" title="Stack Tech"/>
     </div>
 }
 
