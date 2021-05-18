@@ -26,3 +26,7 @@ body {
     line-height: 22.5px;
 }
 
+
+input:focus, button:focus {
+    outline: none;
+}

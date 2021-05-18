@@ -1,25 +1,18 @@
-import Section from "../section/section.component";
+import {FooterLeftSubSection, FooterLeftInputSection} from "./footer-left-subsection.component";
 
 
 
 
 
 const FooterLeft = () => {
-    return <Section isContainer className="flex font-secondary justify-center flex-col text-white flex-1">
-       <div className="w-10/12 mx-auto">
-       <h1 className="text-3xl">DP</h1>
-        <section>
-            <header className="text-xl"> Links </header>
-            
-            <div className="my-3 flex flex-col">
-                <a className="text-md my-1"> Home </a>
-                <a className="text-md my-1"> Home </a>
-                <a className="text-md my-1"> Home </a>
-                <a className="text-md my-1"> Home </a>
+
+    return <section className="flex-1 relative px-14 pt-10 font-secondary text-white">
+            <h1 className="text-3xl"> DP </h1>
+            <div className="flex lg:flex-row flex-col">
+                <FooterLeftSubSection />
+                <FooterLeftInputSection />
             </div>
-        </section>
-       </div>
-    </Section>
+    </section>
 }
 
 export default FooterLeft;

@@ -13,7 +13,7 @@ interface BlogPreviewProps {
 
 const BlogPreviewItem :FC<BlogPreviewProps> = ({ title, article, created_at }) => {
     return <section className="bg-white rounded-primary">
-        <Image src="/assets/images/blog.jpg" width={1000} height={1000}  />
+        <Image src="/assets/images/blog.jpg" width={1000} height={800}  />
         <article className="py-4 px-4">
         <h2 className="text-xl mb-3 font-secondary"> {title} </h2>
         <span className="text-sm text-highlight"> 23th March, 2020 </span>

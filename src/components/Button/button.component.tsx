@@ -9,7 +9,7 @@ interface PrimaryButtonProps {
 
 
 const PrimaryButton :FC<PrimaryButtonProps>  = ({ title, className = "" }) => {
-    return <button className={`bg-primary rounded-primary lg:text-xs text-xs px-8 py-3 text-white font-secondary ${className}`}>
+    return <button className={`bg-primary rounded-primary lg:text-xs text-xs lg:px-8 px-4 py-3 text-white font-secondary ${className}`}>
         { title }
     </button>    
 }
