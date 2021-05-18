@@ -9,7 +9,7 @@ interface SocialIconProps {
 
 const SocialIcon :FC<SocialIconProps> = ({ src, href = "#" }) => {
     return <a href={href} className="mr-4">
-        <img width={22} height={22} src={src} />
+        <img color="#000" width={22} height={22} src={src} />
     </a>
 }
 

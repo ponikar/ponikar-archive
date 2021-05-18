@@ -10,11 +10,11 @@ import FooterLink from "./footer-link.component"
 export const FooterLeftSubSection = () => {
     return <div className="flex flex-col">
     <h2 className="text-lg mt-5 mb-2"> Links  </h2>
-         <FooterLink href="" title="Home" />
-         <FooterLink href="" title="About Me"/>
-         <FooterLink href="" title="Projects"/>
-         <FooterLink href="" title="Blogs"/>
-         <FooterLink href="" title="Stack Tech"/>
+         <FooterLink href="/" title="Home" />
+         <FooterLink href="/" title="About Me"/>
+         <FooterLink href="/" title="Projects"/>
+         <FooterLink href="/" title="Blogs"/>
+         <FooterLink href="/" title="Stack Tech"/>
     </div>
 }
 

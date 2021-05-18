@@ -6,7 +6,7 @@ import MenuIcon from "./menu-icon.component";
 
 
 const Header = () => {
-    return <nav className={`${FlexCenter} ${headerStyle.container} fixed w-11/12 py-4 mx-auto`}>
+    return <nav className={`${FlexCenter} z-10 ${headerStyle.container} fixed top-0 left-0 w-11/12 py-4 mx-auto`}>
         <header>
             <Logo />
         </header>
