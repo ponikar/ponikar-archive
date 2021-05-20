@@ -31,7 +31,7 @@ const StackTech = () => {
                 <JSIcon />
                 <FigmaIcon />
             </div>
-            <div className="col-span-2 lg:my-0 my-12 ml-14  w-10/12">
+            <div className="col-span-2 lg:my-0 my-12 lg:ml-14 mx-auto  w-10/12">
                <NodejsIcon />
                <LaravelIcon />
                <PhpIcon />
