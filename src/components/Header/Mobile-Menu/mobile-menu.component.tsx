@@ -11,7 +11,7 @@ const MobileMenu :FC<{}> = () => {
     const { isMenuOpen } = useContext<HeaderContextTypes>(HeaderContext);
 
     const { transition, animate } = MobileMenuAnimate(isMenuOpen);
-    return <motion.nav style={{ height: "100vh" }} transition={transition} animate={animate} 
+    return <motion.nav style={{ height: "100vh", y: "1000px" }} transition={transition} animate={animate} 
             className="lg:hidden p-4 fixed z-10 flex top-0 left-0 bg-background w-full h-screen">
             <div className="w-11/12 flex flex-col justify-center font-secondary">
                 <MobileMenuLink />

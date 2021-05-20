@@ -1,11 +1,14 @@
+import { motion, useTransform, useViewportScroll } from "framer-motion";
 import Icon from "../../media/svgs/js.svg"
 
 
 
 const JSIcon = () => {
-    return <div className="flex justify-center items-center">
+    const { scrollYProgress } = useViewportScroll();
+    const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1.5])
+    return <motion.div style={{ scale }} className="flex justify-center items-center">
     <Icon /> 
-</div>
+</motion.div>
 }
 
 

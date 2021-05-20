@@ -1,11 +1,15 @@
-    import Icon from "../../media/svgs/react.svg"
+import Icon from "../../media/svgs/react.svg"
+import Parallex from "../Animations/Parellex/parallex.component";
 
 
 
     const ReactIcon = () => {
-        return <div className="flex mr-10 justify-end">
+      
+        return <Parallex>
+             <div className="flex mr-10 justify-end">
         <Icon /> 
     </div>
+        </Parallex>
     }
 
 
