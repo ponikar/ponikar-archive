@@ -13,11 +13,13 @@ const Header = () => {
 
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const { scrollYProgress } = useViewportScroll();
+
+
+
     
-    const y = useTransform(scrollYProgress, [0, 1], [0, -100])
     
     return <HeaderContext.Provider value={{ isMenuOpen, setIsMenuOpen: toggleValue => setIsMenuOpen(toggleValue) }}>
-    <motion.nav style={{ y }}  className={`${FlexCenter} z-20 ${headerStyle.container} fixed top-0 left-0 w-11/12 py-4 mx-auto`}>
+    <nav  className={`${FlexCenter} z-20 ${headerStyle.container} fixed top-0 left-0 w-11/12 py-4 mx-auto`}>
         <header>
             <Logo />
         </header>
@@ -31,8 +33,8 @@ const Header = () => {
             <HeaderLink title="Stack tech" />
         </div>
 
-        {/* Mobile Links */}
-    </motion.nav>
+        {/* Mobile L+inks */}
+    </nav>
     <MobileMenu />
     </HeaderContext.Provider>
 }
