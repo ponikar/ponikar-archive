@@ -5,13 +5,8 @@ import { CreateBlogTextArea } from "../../src/components/Create-Blog/create-blog
 
 
 const CreateBlog: FC<{}> = () => {
-    return <main className="w-9/12 mx-auto grid grid-cols-6">
-        <div className="flex col-span-2">
-
-        </div>
-        <div className="col-span-4 p-5 bg-white">
+    return <main className="w-9/12 mx-auto">
            <CreateBlogTextArea />
-        </div>
     </main>
 }
 
