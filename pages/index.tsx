@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+import { FirebaseAuth } from "../Firebase/firebase.config"
 import PageBase from "../src/components/Base/page-base.component"
 import AboutSection from "../src/components/Index/about-section.component"
 import BlogSection from "../src/components/Index/blogs-section.component"
@@ -7,7 +9,9 @@ import StackTech from "../src/components/Index/stack-tech.component"
 
 
 const Index = () => {
-
+    useEffect(() => {
+        FirebaseAuth.then((u) => console.log("GOt user", u))
+    }, []);
     return (
         <PageBase>
          <HeroSection />
