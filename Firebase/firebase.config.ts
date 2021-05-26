@@ -1,16 +1,18 @@
-import config from "./config.json"
-import firebase from "firebase"
+import firebaseConfig from "./config.json"
+import firebase from "firebase/app"
+import "firebase/auth"
+import "firebase/firestore"
 
 
 
-if(!firebase.apps.length && process.browser) {
-    firebase.initializeApp(config);
+if(!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
 }
 
 
-const Provider = new firebase.auth.GoogleAuthProvider()
+export const FirebaseAuth = firebase.auth;
 
-export const FirebaseAuth =  firebase.auth().signInWithPopup(Provider);
+export default firebase;
 export const Firestore = firebase.firestore();
 
 
