@@ -6,10 +6,10 @@ import SocialIcon from "./social-icon.component";
 
 
 const HeroLeft = () => {
-    return <section className={`${FlexCenter} flex-col relative lg:mt-0 mt-24 flex-1`}>
+    return <section className={`${FlexCenter} flex-col sm:h-screen h-auto relative lg:mt-0 mt-24 flex-1`}>
             <div /> 
             <div className="w-10/12 relative top-10 mx-0">
-                <h1 className="lg:text-3xl text-xl lg:text-left text-center font-secondary">
+                <h1 className="lg:text-2xl 2xl:text-4xl sm:w-10/12 w-full text-xl lg:text-left text-center font-secondary">
                     The Journey of Fullstack Developer 
                 </h1>
                 <div className="flex lg:justify-start justify-center">
