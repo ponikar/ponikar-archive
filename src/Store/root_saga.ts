@@ -4,4 +4,4 @@ import { userSagas } from "./Reducers/User/user.sagas";
 
 export default function* rootSagas() {
     yield all([call(userSagas)]);
-}
+}   
