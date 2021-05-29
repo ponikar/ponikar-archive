@@ -1,5 +1,5 @@
 import { Firestore } from "../firebase.config"
-
+import firebase from "firebase"
 interface storeBlogProps {
     title: string;
     article: string;
@@ -8,13 +8,8 @@ interface storeBlogProps {
 }
 
 
-const FirestoreRef = (uid:string) => Firestore.collection(`/blogs/${uid}`);
+const FirestoreRef = (uid:string) => Firestore.collection(`/user/blogs/${uid}`)
 
-export const storeBlog = async ({ title, article, uid, tags = [] }: storeBlogProps) => {
-    try {
-        const doc = await FirestoreRef(uid).add({ title, article, tags });
-        console.log("document found", doc);
-    } catch(e) {
-        console.log("Something went wrong", e.message);
-    }
+export const storeBlog = async ({ title, article, uid, tags = [] }: storeBlogProps) :Promise<firebase.firestore.DocumentData> => {
+        return FirestoreRef(uid).add({ title, article, tags });
 }
