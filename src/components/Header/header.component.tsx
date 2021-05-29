@@ -8,6 +8,7 @@ import MenuIcon from "./menu-icon.component";
 import MobileMenu from "./Mobile-Menu/mobile-menu.component";
 import { motion } from "framer-motion"
 import { useState } from "react";
+import { responsiveChildren } from "../../TailwindClasses/responsive.classes";
 
 const Header = () => {
 
@@ -19,7 +20,7 @@ const Header = () => {
     
     
     return <HeaderContext.Provider value={{ isMenuOpen, setIsMenuOpen: toggleValue => setIsMenuOpen(toggleValue) }}>
-    <nav  className={`${FlexCenter} z-20 ${headerStyle.container} fixed top-0 left-0 w-11/12 py-4 mx-auto`}>
+    <nav  className={`${FlexCenter} ${responsiveChildren}  z-20 ${headerStyle.container} fixed top-0 left-0 w-11/12 py-4 mx-auto`}>
         <header>
             <Logo />
         </header>

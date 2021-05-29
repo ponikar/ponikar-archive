@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { responsiveChildren } from "../../TailwindClasses/responsive.classes";
 import withParallexEffect from "../Animations/Parellex/parallexImage.hook";
 import PrimaryButton from "../Button/button.component";
 import SectionTitle from "../section/section-title.component";
@@ -13,7 +14,7 @@ const AboutSection = () => {
 
     const [y, scale] = withParallexEffect([0.1, 1]);
 
-    return <Section className="grid lg:grid-cols-2 grid-cols-1">
+    return <Section className={`grid lg:grid-cols-2 grid-cols-1 2xl:w-11/12 mx-auto`}>
       
        <div className="w-11/12  overflow-hidden">
        <motion.img style={{ scale }} className="w-full" src="/assets/images/about.png"  />   

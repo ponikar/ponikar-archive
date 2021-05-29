@@ -7,15 +7,14 @@ import StackTech from "../src/components/Index/stack-tech.component"
 
 
 const Index = () => {
-
     return (
-        <PageBase>
-         <HeroSection />
-         <AboutSection />
-         <StackTech />
-         <Showcase />
-         <BlogSection />
-        </PageBase>
+            <PageBase>
+                <HeroSection />
+                <AboutSection />
+                <StackTech />
+                <Showcase />
+                <BlogSection />
+            </PageBase>
     )
 }
 
