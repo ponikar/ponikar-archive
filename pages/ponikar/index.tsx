@@ -1,33 +1,28 @@
-import { FC, useCallback, useEffect } from "react";
-import { userStartSignin } from "../../src/Store/Reducers/User/user.actions";
+import { FC } from "react";
 import { connect } from "react-redux"
 import { USER_INTIAL_STATE_TYPE } from "../../src/Store/Reducers/User/user.types";
+import { compose } from "redux";
+import { AdminMiddleware } from "../../src/Middlewares/admin.middleware";
+import PageBase from "../../src/components/Base/page-base.component";
+import { createStructuredSelector } from "reselect";
+import { selectUser } from "../../src/Store/Reducers/User/users.selectos";
+import { FirebaseAuth } from "../../Firebase/firebase.config";
 
-// const Auth = FirebaseAuth();
 interface PonikarProps {
-    userStartSignin?: () => void;
     user?: USER_INTIAL_STATE_TYPE
 }
 
-const Ponikar:FC<PonikarProps> = ({ userStartSignin, user }) => {
-    useEffect(() => {
-        // TODO: showpop if admin hasn't been logged in
-        // userStartSignin();
-    }, []);
+const Ponikar:FC<PonikarProps> = ({ user }) => {
 
-    console.log(user);
-
-
-    return <button onClick={_ => userStartSignin()}> Hello </button>
+    return <PageBase>
+        <div> <button onClick={_ => FirebaseAuth().signOut()}> Singout </button> </div>
+    </PageBase>
 }
 
 
-const mapStateToDispatch = dispatch => ({
-    userStartSignin: _ => dispatch(userStartSignin("USER_SINGING_START"))
+
+const mapStateToProps = createStructuredSelector({
+    user: selectUser
 });
 
-const mapStateToProps = (state) => ({
-    user: state.user
-})
-
-export default connect(mapStateToProps, mapStateToDispatch)(Ponikar);
+export default compose(AdminMiddleware,connect(mapStateToProps, null))(Ponikar);

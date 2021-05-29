@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { FirebaseAuth } from "../../../../Firebase/firebase.config";
-import { userLoggedIn } from "./user.actions";
+import { userLoggedIn, userSetMessage } from "./user.actions";
 import { USER_SINGING_START } from "./user.types";
 
 
@@ -14,7 +14,7 @@ export function* signinWithPopup() {
         const { user: { displayName, email, uid, photoURL } } = yield FirebaseAuth().signInWithPopup(new FirebaseAuth.GoogleAuthProvider());
         yield put(userLoggedIn({ payload: { photoURL, displayName, email, uid } }));
      } catch(e) {
-        yield console.log("ERROR AT USER SAGA", e);
+        yield put(userSetMessage({ payload: e.message }));
      }
 }
 

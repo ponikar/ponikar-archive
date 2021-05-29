@@ -1,4 +1,4 @@
-import { UserLoggedInType, USER_INTIAL_STATE_TYPE, USER_SINGING_START } from "./user.types"
+import { UserLoggedInType, UserLogoutType, UserMessageType, USER_LOGOUT, USER_SINGING_START } from "./user.types"
 
 
 
@@ -13,3 +13,12 @@ export const userStartSignin = (type?: USER_SINGING_START) => {
         type 
     });
 }
+
+export const userLoggedOut = (type: USER_LOGOUT) => ({
+    type
+});
+
+export const userSetMessage = ({ type = "USER_SET_MESSAGE", payload  }: UserMessageType) => ({
+    type,
+    payload
+});
