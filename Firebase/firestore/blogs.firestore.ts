@@ -10,14 +10,23 @@ interface storeBlogProps {
 }
 
 
-const FirestoreRef = (uid:string) => Firestore.collection(`/user/blogs/${uid}`)
+const FirestoreRef = Firestore.collection(`/blogs`)
 
-export const storeBlog = async ({ title, article, uid, tags = [] }: storeBlogProps) => {
+export const storeBlog = async ({ title, article, tags = [] }: storeBlogProps) => {
         try {
             const batch = Firestore.batch();
-            const doc =  await FirestoreRef(uid).add({ title, article, tags, ...fsCreatedTimeStamp});
+            const doc =  await FirestoreRef.add({ title, article, tags, ...fsCreatedTimeStamp});
             return await mapBlogWithTags(doc.id, tags, batch);
         } catch(e) {
             console.log("ERROR couldn't store doc", e.message);
         }
+}
+
+export const getDocumentsByTag = async (tag: string) => {
+    try {
+       const docs = await (await Firestore.collection("/blogs").where("tags","array-contains", tag).get()).docs;
+       console.log("DOCUMENTS" ,docs[0].data());
+    } catch(e) {
+        console.log("ERRR", e.message);
+    }
 }
