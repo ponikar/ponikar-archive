@@ -1,6 +1,7 @@
 import { ChangeEvent,  FC, useCallback, useRef, useState } from "react";
 import { uploadImage } from "../../Firebase/firestore/blogs.storage";
 import CreateBlogHeader from "../../src/components/Admin/Blog/create-blog-header.component";
+import AdminPageContainer from "../../src/components/Admin/Container/container.component";
 import { CreateBlogTextArea } from "../../src/components/Create-Blog/create-blog.component";
 import { CreateBlogContext } from "../../src/Context/create-blog.context";
 
@@ -35,10 +36,10 @@ const CreateBlog: FC<{}> = () => {
     
     return <CreateBlogContext.Provider value={{ ...blog, tags: blog.tags ,fileRef, setProps }}>
     <CreateBlogHeader />  
-    <main className="w-10/12 mx-auto">
+    <AdminPageContainer>
         <input hidden accept="images" type="file" ref={fileRef} onChange={appendImage}  />
         <CreateBlogTextArea {...blog} setBlog={setProps} />
-    </main>
+    </AdminPageContainer>
     </CreateBlogContext.Provider>
 }
 
