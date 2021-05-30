@@ -11,7 +11,7 @@ import BlogTitle from "../../Create-Blog/blog-title.component";
 
 const CreateBlogHeader:FC<{}> = ({  }) => {
 
-    const { title, setProps, article, fileRef } = useContext(CreateBlogContext);
+    const { title, setProps, article, fileRef, tags } = useContext(CreateBlogContext);
     const { uid } = useSelector(selectUser);
     const openFiles = useCallback(() => {
         fileRef.current.click();
@@ -20,8 +20,9 @@ const CreateBlogHeader:FC<{}> = ({  }) => {
     const publishPost = useCallback(async () => {
         try {
             if(article && title) {
-                await storeBlog({ title, article, uid  });
-                setProps({ title: "", article: "" });
+                await storeBlog({ title, article, uid, tags  });
+                console.log("Blog has been created");
+                setProps({ title: "", article: "", tags: [] });
              }
         } catch(e) {    
             console.log("COULDN'n upload blog");

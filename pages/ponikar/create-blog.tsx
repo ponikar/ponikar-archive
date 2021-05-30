@@ -8,11 +8,13 @@ import { CreateBlogContext } from "../../src/Context/create-blog.context";
 interface BlogProps {
     title: string;
     article: string;
+    tags?: string[];
 }
 
 const INITIAL_PROPS :BlogProps = {
     title: "",
     article: "",
+    tags: []
 }
 
 const CreateBlog: FC<{}> = () => {
@@ -31,7 +33,7 @@ const CreateBlog: FC<{}> = () => {
     const setProps = (props:object) => setBlog({...blog, ...props});
   
     
-    return <CreateBlogContext.Provider value={{ ...blog, fileRef, setProps }}>
+    return <CreateBlogContext.Provider value={{ ...blog, tags: blog.tags ,fileRef, setProps }}>
     <CreateBlogHeader />  
     <main className="w-10/12 mx-auto">
         <input hidden accept="images" type="file" ref={fileRef} onChange={appendImage}  />
