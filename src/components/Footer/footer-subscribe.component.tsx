@@ -19,6 +19,7 @@ const FooterSubscribe = () => {
             setIsLoading(true);
             await subscribeForEmail(email);
             setEmail("");
+            setIsLoading(false);
         } catch(e) {
             console.log(e.message, "SOMETHING WENT WRONG");
         }

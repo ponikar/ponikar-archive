@@ -1,4 +1,4 @@
-import { Cpu, GitBranch, Home, Icon as I, PenTool, User } from "react-feather";
+import { Cpu, GitBranch, Home, Icon as I, Inbox, PenTool, User } from "react-feather";
 
 export interface MenuDataTypes {
     title: string;
@@ -31,4 +31,5 @@ export const MenuData :MenuDataTypes[] = [{
 }, {
     title: "Say Hello!",
     href: "/contact",
+    Icon: Inbox
 }];
