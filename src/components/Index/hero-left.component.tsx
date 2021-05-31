@@ -1,3 +1,4 @@
+import { SocialMediaLink } from "../../data/static-media-link.data";
 import { FlexCenter } from "../../TailwindClasses/flex.classes";
 import PrimaryButton from "../Button/button.component";
 import SocialIcon from "./social-icon.component";
@@ -18,9 +19,7 @@ const HeroLeft = () => {
             </div>
 
             <div className="flex w-10/12 mt-24 lg:justify-start justify-center mb-5">
-                <SocialIcon src="/assets/svgs/twitter.svg" />
-                <SocialIcon src="/assets/svgs/linkedin.svg" />
-                <SocialIcon src="/assets/svgs/instagram.svg" />
+                { SocialMediaLink.map((media, index) => <SocialIcon {...media} key={index} />) }
             </div>
         </section>
 }

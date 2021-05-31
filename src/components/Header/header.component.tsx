@@ -9,6 +9,7 @@ import MobileMenu from "./Mobile-Menu/mobile-menu.component";
 import { motion } from "framer-motion"
 import { useState } from "react";
 import { responsiveChildren } from "../../TailwindClasses/responsive.classes";
+import { MenuData } from "../../data/static-menu.data";
 
 const Header = () => {
 
@@ -27,11 +28,7 @@ const Header = () => {
         
         <MenuIcon />
         <div className="lg:flex hidden">
-            <HeaderLink title="Home" />
-            <HeaderLink title="About me" />
-            <HeaderLink title="Projects" />
-            <HeaderLink title="Blogs" />
-            <HeaderLink title="Stack tech" />
+          { MenuData.map((menu, index) => <HeaderLink {...menu} key={index} />) }
         </div>
 
         {/* Mobile L+inks */}

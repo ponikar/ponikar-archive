@@ -8,7 +8,9 @@ module.exports = {
       white: "#fff",
       highlight: "#848484",
       grey: "#A5A5A5",
-      bcolor: "#DADADA"
+      bcolor: "#DADADA",
+      green: "green",
+      red: "red"
     },
     borderRadius: {
       primary: "2.5px",

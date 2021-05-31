@@ -1,12 +1,10 @@
 import { FC } from "react";
 import Link from "next/link"
+import { MenuDataTypes } from "../../data/static-menu.data";
 
-interface HeaderLinkProps {
-    title: string;
-    href?: ""
-}
 
-const HeaderLink:FC<HeaderLinkProps> = ({ title, href = "#" }) =>  {
+
+const HeaderLink:FC<MenuDataTypes> = ({ title, href = "#" }) =>  {
     return <Link href={href}>
      <a className="font-secondary ml-8 text-sm"> {title}  </a>
     </Link>
