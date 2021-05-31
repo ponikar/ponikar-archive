@@ -39,3 +39,13 @@ export const getRecentBlogs = async () => {
         throw new Error(e.message);
     }
 }
+
+
+export const getBlogsID = async () => {
+    try {
+        const docs = await (await FirestoreRef.orderBy("createdAt", "desc").get()).docs;
+        return docs.map(doc => doc.data().id);
+    } catch(e) {
+        throw new Error(e.message);
+    }
+}
