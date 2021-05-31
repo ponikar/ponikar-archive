@@ -7,15 +7,15 @@ export interface SocialMediaLinkType {
 
 
 export const SocialMediaLink :SocialMediaLinkType[] = [{
-    href: "",
+    href: "https://twitter.com/PonikarDarshan",
     alt: "Ponikar on Twitter",
     src: "/assets/svgs/twitter.svg"
 }, {
-    href: "",
+    href: "https://www.linkedin.com/in/darshan-ponikar-aa89691a3/",
     alt: "Ponikar on Linkedin",
     src: "/assets/svgs/linkedin.svg"
 },  {
-    href: "instagram.com/iponikar",
+    href: "https://instagram.com/iponikar",
     alt: "Ponikar on Instagram",
     src: "/assets/svgs/instagram.svg"
 }]

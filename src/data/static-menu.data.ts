@@ -28,4 +28,7 @@ export const MenuData :MenuDataTypes[] = [{
     title: "Stack Tech",
     href: "#stack-tech",
     Icon: Cpu
+}, {
+    title: "Say Hello!",
+    href: "/contact",
 }];

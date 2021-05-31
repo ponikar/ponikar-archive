@@ -1,11 +1,23 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import PageBase from "../src/components/Base/page-base.component";
 import PrimaryButton from "../src/components/Button/button.component";
 import {TextArea, TextInput} from "../src/components/Input/input.component";
 import contactStyle from "../styles/contact.module.css"
 
+interface ContactStateType {
+    name: string;
+    email: string;
+    message: string;
+}
+
+const CONTACT_INITIAL_STATE :ContactStateType = {
+    name: "",
+    email: "",
+    message: ""
+}
 
 const Contact :FC<{}> = () => {
+    const [contact, setContact] = useState<ContactStateType>(CONTACT_INITIAL_STATE);
     return <PageBase>
         <section className={`${contactStyle.container} flex justify-center items-center`}>
             <div className="bg-background rounded-highlight py-12 lg:mt-0 md:mt-0 mt-56 lg:w-6/12 w-11/12">

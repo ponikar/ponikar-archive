@@ -12,7 +12,7 @@ const MobileMenuLink :FC<MenuDataTypes> = ({ title, href = "#", Icon }) => {
     const { isMenuOpen } = useContext(HeaderContext);
 
     return <Link href={href}>
-    <motion.a transition={{ duration: 0.6, delay: Math.random() }} animate={isMenuOpen ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }} className="flex mb-2 items-center">
+    <motion.a transition={{ duration: 0.6, delay: Math.random() }} animate={isMenuOpen ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }} className="flex mb-4  items-center">
     { Icon && <Icon size={22} strokeWidth={0.8} /> }
     <h2 className="ml-2 text-base"> {title} </h2>
     </motion.a>
