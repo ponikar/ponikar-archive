@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { ButtonHTMLAttributes, FC } from "react";
 
 
 interface PrimaryButtonProps {
@@ -7,14 +7,15 @@ interface PrimaryButtonProps {
 }
 
 
+type ButtonProps = PrimaryButtonProps & ButtonHTMLAttributes<HTMLButtonElement>
 
-const PrimaryButton :FC<PrimaryButtonProps>  = ({ title, className = "" }) => {
+const PrimaryButton :FC<ButtonProps>  = ({ title, className = "" }) => {
     return <button className={`bg-primary rounded-primary lg:text-xs text-xs lg:px-8 px-4 py-3 text-white font-secondary ${className}`}>
         { title }
     </button>    
 }
 
-export const MediumButton :FC<PrimaryButtonProps> = ({ title, className = "" }) => {
+export const MediumButton :FC<ButtonProps> = ({ title, className = "" }) => {
     return <button className={`bg-primary rounded-primary text-base px-3 py-1 pt-2 text-white font-primary ${className}`}>
     { title }
 </button>    

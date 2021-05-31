@@ -16,7 +16,7 @@ const AboutSection = () => {
 
     return <Section className={`grid lg:grid-cols-2 grid-cols-1 2xl:w-11/12 mx-auto`}>
       
-       <div className="w-11/12  overflow-hidden">
+       <div id="about-me" className="w-11/12  overflow-hidden">
        <motion.img style={{ scale }} className="w-full" src="/assets/images/about.png"  />   
        </div>
 
