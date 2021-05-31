@@ -24,7 +24,7 @@ export const storeBlog = async ({ title, article, tags = [] }: storeBlogProps) =
 
 export const getDocumentsByTag = async (tag: string) => {
     try {
-       const docs = await (await Firestore.collection("/blogs").where("tags","array-contains", tag).get()).docs;
+       const docs = await (await FirestoreRef.where("tags","array-contains", tag).get()).docs;
        console.log("DOCUMENTS" ,docs[0].data());
     } catch(e) {
         console.log("ERRR", e.message);
@@ -33,7 +33,7 @@ export const getDocumentsByTag = async (tag: string) => {
 
 export const getRecentBlogs = async () => {
     try {
-        const docs = await (await Firestore.collection("/blogs").orderBy("createdAt", "desc").get()).docs;
+        const docs = await (await FirestoreRef.orderBy("createdAt", "desc").limit(3).get()).docs;
         return docs.map(doc => doc.data());
     } catch(e) {
         throw new Error(e.message);
