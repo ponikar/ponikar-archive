@@ -1,0 +1,13 @@
+import { FC } from "react";
+import style from "./loading.module.css"
+
+
+
+
+
+export const Loading :FC<{}> = ({ }) => {
+    return <div className="flex w-full justify-center items-center">
+        <div className={`${style.loading_container} animate-spin`} /> 
+    </div>
+}
+

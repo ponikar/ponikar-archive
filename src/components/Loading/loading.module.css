@@ -1,0 +1,11 @@
+
+
+
+
+.loading_container {
+    border: 2px solid #A5A5A5;
+    border-radius: 100%;
+    border-top-color: #222222;
+    width: 30px; 
+    height: 30px;
+}
