@@ -30,3 +30,12 @@ export const getDocumentsByTag = async (tag: string) => {
         console.log("ERRR", e.message);
     }
 }
+
+export const getRecentBlogs = async () => {
+    try {
+        const docs = await (await Firestore.collection("/blogs").orderBy("createdAt", "desc").get()).docs;
+        return docs.map(doc => doc.data());
+    } catch(e) {
+        throw new Error(e.message);
+    }
+}
