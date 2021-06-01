@@ -22,7 +22,7 @@ const BlogPreviewItem :FC<BlogPreviewProps> = ({ title, article, createdAt, id }
         <article className="py-4 px-4">
         <h2 className="text-xl mb-3 font-secondary"> {title} </h2>
         <span className="text-sm text-highlight"> {created_at} </span>
-        <p className="a-line-highlight font-primary" dangerouslySetInnerHTML={{ __html: marked(article) }} /> 
+        <p className="a-line-highlight font-primary" dangerouslySetInnerHTML={{ __html: marked(`${article.substr(0, 100)}...`) }} /> 
 
         <Link href={`/blogs/${id}`}>
           <a><MediumButton className="mt-4"  title="Read More" /></a>

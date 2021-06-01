@@ -12,8 +12,9 @@ const SelectTags :FC<SelectTagsProps> = ({ }) => {
     const {  setProps, tags } = useContext(CreateBlogContext);
 
     return <div className="m-5 border-0">
-        <p className="text-xs">  Select Tags </p>
+        <p className="text-base">  Select Tags </p>
         <Select
+            className="bg-back py-2"
             isMulti
             onChange={selected =>  setProps({ tags: selected.map(s => s.value.toLocaleLowerCase()) })}
             name="colors"
