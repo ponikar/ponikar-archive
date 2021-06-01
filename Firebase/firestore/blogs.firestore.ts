@@ -1,6 +1,6 @@
 import { Firestore } from "../firebase.config"
 import firebase from "firebase"
-import { fsCreatedTimeStamp } from "./firestore.helper";
+import { fsCreatedTimeStamp, covertTimeStampToString } from "./firestore.helper";
 import { mapBlogWithTags } from "./tags.firestore";
 interface storeBlogProps {
     title: string;
@@ -25,27 +25,31 @@ export const storeBlog = async ({ title, article, tags = [] }: storeBlogProps) =
 export const getDocumentsByTag = async (tag: string) => {
     try {
        const docs = await (await FirestoreRef.where("tags","array-contains", tag).get()).docs;
-       console.log("DOCUMENTS" ,docs[0].data());
     } catch(e) {
         console.log("ERRR", e.message);
     }
 }
 
+
 export const getRecentBlogs = async () => {
     try {
         const docs = await (await FirestoreRef.orderBy("createdAt", "desc").limit(3).get()).docs;
-        return docs.map(doc => doc.data());
+        return docs.map((doc) => ({ ...doc.data(), ...covertTimeStampToString(doc.data())  ,id: doc.id,  }));
     } catch(e) {
         throw new Error(e.message);
     }
 }
 
-
 export const getBlogsID = async () => {
     try {
         const docs = await (await FirestoreRef.orderBy("createdAt", "desc").get()).docs;
-        return docs.map(doc => doc.data().id);
+        return docs.map(doc => ({ params: { blog_id: doc.id } }));
     } catch(e) {
         throw new Error(e.message);
     }
+}
+
+export const getBlogByID = async (id) => {
+    const doc = await (await (await FirestoreRef.doc(id)).get());
+    return { id: doc.id, ...doc.data(), ...covertTimeStampToString(doc.data())};
 }
