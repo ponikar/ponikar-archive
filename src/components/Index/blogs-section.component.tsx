@@ -11,7 +11,7 @@ const BlogSection = () => {
     const { blogs } = useContext(LandingPageContext);
     return <Section isContainer>
         <SectionTitle title="Blogs" />
-        <div className="grid  lg:grid-cols-3 grid-cols-1 mt-12 gap-5">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-12 gap-5">
           { blogs.map(blog => <BlogPreviewItem key={blog.id} {...blog} />) }
         </div>
     </Section>

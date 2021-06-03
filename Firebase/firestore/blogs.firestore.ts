@@ -31,9 +31,9 @@ export const getDocumentsByTag = async (tag: string) => {
 }
 
 
-export const getRecentBlogs = async () => {
+export const getRecentBlogs = async (limit = 3) => {
     try {
-        const docs = await (await FirestoreRef.orderBy("createdAt", "desc").limit(3).get()).docs;
+        const docs = await (await FirestoreRef.orderBy("createdAt", "desc").limit(limit).get()).docs;
         return docs.map((doc) => ({ ...doc.data(), ...covertTimeStampToString(doc.data())  ,id: doc.id,  }));
     } catch(e) {
         throw new Error(e.message);

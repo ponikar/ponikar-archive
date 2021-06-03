@@ -21,7 +21,7 @@ const Blog: FC<BlogType> = ({ blog }) => {
 
     return <PageBase>
         <section className={`mt-32 2xl:w-6/12 lg:w-7/12 w-11/12 mx-auto`}>
-           <BlogImage src="/assets/images/blog-page.jpg" alt="This is blog" />
+           {/* <BlogImage src="/assets/images/blog-page.jpg" alt="This is blog" /> */}
            <header className="font-secondary mt-8 ">
            <h1 className="lg:text-3xl text-xl"> { title }  </h1>
            <div className="text-sm mt-2"> { time } &bull; 2 min Read </div>

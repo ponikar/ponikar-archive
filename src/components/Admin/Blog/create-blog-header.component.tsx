@@ -1,31 +1,43 @@
 import { FC, useCallback, useContext } from "react";
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { storeBlog } from "../../../../Firebase/firestore/blogs.firestore";
 import { CreateBlogContext } from "../../../Context/create-blog.context";
+import { useFormHelpers } from "../../../hooks/use-form-helpers.hook";
+import { showToast } from "../../../Store/Reducers/Toast/toast.actions";
+import { ToastTypes } from "../../../Store/Reducers/Toast/toast.types";
 import { selectUser } from "../../../Store/Reducers/User/users.selectos";
 import { MediumButton } from "../../Button/button.component";
 import BlogTitle from "../../Create-Blog/blog-title.component";
 
 
+interface CreateBlogHeaderPropsType {
+    showToast: (payload: ToastTypes) => void;
+}
 
 
-const CreateBlogHeader:FC<{}> = ({  }) => {
+const CreateBlogHeader:FC<CreateBlogHeaderPropsType> = ({ showToast }) => {
 
     const { title, setProps, article, fileRef, tags } = useContext(CreateBlogContext);
     const { uid } = useSelector(selectUser);
+    const [{ isLoading }, setFormHelpers, FORM_HELPER_INITIAL_STATE] = useFormHelpers();
     const openFiles = useCallback(() => {
         fileRef.current.click();
     }, [fileRef, article]);
 
     const publishPost = useCallback(async () => {
         try {
+            setFormHelpers({ isLoading: true });
             if(article && title) {
                 await storeBlog({ title, article, uid, tags  });
-                console.log("Blog has been created");
+                showToast({ message: "Blog has been published", type: "success" });
                 setProps({ title: "", article: "", tags: [] });
+                setFormHelpers({ isLoading: false });
+
              }
         } catch(e) {    
-            console.log("COULDN'n upload blog");
+            setFormHelpers({ isLoading: false });
+            showToast({ message: e.message, type: "danger" });
+
         }
     }, [title, article]);
 
@@ -34,10 +46,14 @@ const CreateBlogHeader:FC<{}> = ({  }) => {
             <BlogTitle title={title} onChange={setProps} />
             <div> 
                 <MediumButton onClick={openFiles} secondary  title="Add Image" />
-                <MediumButton onClick={publishPost} className="ml-2" title="Publish" />
+                <MediumButton disabled={isLoading} onClick={publishPost} className="ml-2" title={isLoading ? "Publishing" : "Publish"} />
             </div>
         </div>
     </nav>
 }
 
-export default CreateBlogHeader;
+const mapDispatchToProps = dispatch => ({
+    showToast: (payload: ToastTypes) => dispatch(showToast({ type: "SHOW_TOAST", payload }))
+})
+
+export default connect(null, mapDispatchToProps)(CreateBlogHeader);
