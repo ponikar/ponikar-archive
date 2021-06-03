@@ -1,13 +1,11 @@
-import { FC, useCallback, useContext } from "react";
-import { connect, useSelector } from "react-redux";
-import { storeBlog } from "../../../../Firebase/firestore/blogs.firestore";
+import { FC, useCallback, useContext, useState } from "react";
+import { connect } from "react-redux";
 import { CreateBlogContext } from "../../../Context/create-blog.context";
-import { useFormHelpers } from "../../../hooks/use-form-helpers.hook";
 import { showToast } from "../../../Store/Reducers/Toast/toast.actions";
 import { ToastTypes } from "../../../Store/Reducers/Toast/toast.types";
-import { selectUser } from "../../../Store/Reducers/User/users.selectos";
 import { MediumButton } from "../../Button/button.component";
 import BlogTitle from "../../Create-Blog/blog-title.component";
+import CreateBlogConfirmation from "./create-blog-confirmation.component";
 
 
 interface CreateBlogHeaderPropsType {
@@ -18,38 +16,29 @@ interface CreateBlogHeaderPropsType {
 const CreateBlogHeader:FC<CreateBlogHeaderPropsType> = ({ showToast }) => {
 
     const { title, setProps, article, fileRef, tags } = useContext(CreateBlogContext);
-    const { uid } = useSelector(selectUser);
-    const [{ isLoading }, setFormHelpers, FORM_HELPER_INITIAL_STATE] = useFormHelpers();
+    const [showPreview, setShowPreview] = useState(false);
     const openFiles = useCallback(() => {
         fileRef.current.click();
     }, [fileRef, article]);
 
     const publishPost = useCallback(async () => {
-        try {
-            setFormHelpers({ isLoading: true });
-            if(article && title) {
-                await storeBlog({ title, article, uid, tags  });
-                showToast({ message: "Blog has been published", type: "success" });
-                setProps({ title: "", article: "", tags: [] });
-                setFormHelpers({ isLoading: false });
+       if(!title || !article) return showToast({ message: "Complete your Article First", type: "danger" });
+       
+       setShowPreview(!showPreview);
+    }, [title,article,showPreview, tags]);
 
-             }
-        } catch(e) {    
-            setFormHelpers({ isLoading: false });
-            showToast({ message: e.message, type: "danger" });
-
-        }
-    }, [title, article]);
-
-    return <nav className="w-full absolute top-0 left-0 bg-white">
+    return <>
+    <nav className="w-full absolute top-0 left-0 bg-white">
         <div className="w-8/12 mx-auto flex items-center justify-between p-2">
             <BlogTitle title={title} onChange={setProps} />
             <div> 
                 <MediumButton onClick={openFiles} secondary  title="Add Image" />
-                <MediumButton disabled={isLoading} onClick={publishPost} className="ml-2" title={isLoading ? "Publishing" : "Publish"} />
+                <MediumButton onClick={publishPost} className="ml-2" title={"Publish"} />
             </div>
         </div>
     </nav>
+    { showPreview && <CreateBlogConfirmation /> }
+    </>
 }
 
 const mapDispatchToProps = dispatch => ({

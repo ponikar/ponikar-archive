@@ -1,4 +1,4 @@
-import style from "./create-blog.module.css"
+import style from "../../../styles/create-blog.module.css"
 import marked from "marked"
 import { FC, useState } from "react";
 import SelectTags from "./select-tags.component";

@@ -2,12 +2,28 @@ import { createContext } from "react"
 
 
 
-export const CREATE_BLOG_INITIAL_STATE = {
+export interface BlogProps {
+    title: string;
+    article: string;
+    tags?: string[];
+    description: string;
+    preiview_image: string;
+}
+
+const CREATE_BLOG_INITIAL_PROPS :BlogProps = {
     title: "",
     article: "",
-    tags:[],
+    tags: [],
+    description: "",
+    preiview_image: ""
+}
+
+
+export const CREATE_BLOG_INITIAL_STATE = {
+    ...CREATE_BLOG_INITIAL_PROPS,
     setProps: props => {},
     fileRef: null,
+
 }
 
 
