@@ -8,15 +8,18 @@ import { ToastTypes  } from "../../../Store/Reducers/Toast/toast.types"
 import { showToast } from "../../../Store/Reducers/Toast/toast.actions"
 import { storeBlog } from "../../../../Firebase/firestore/blogs.firestore"
 import { uploadImage } from "../../../../Firebase/firestore/blogs.storage"
+import { BackPressContext } from "../../BackPresser/back-presser.context"
 
 
 interface CreateBlogConfirmationProps {
-    showToast: (payload: ToastTypes) => void;
+    showToast?: (payload: ToastTypes) => void;
+    setShowPreview?: (bool:boolean) => void;
 }
 
 
-const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast }) => {
+const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast, setShowPreview }) => {
 
+    const { setAnyBackProps } = useContext(BackPressContext);
 
     const createBlogProps = useContext(CreateBlogContext);
     
@@ -42,6 +45,8 @@ const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast }) =
         await storeBlog({ title, article, tags, description, preview_image: publicURL });
         showToast({ message: "Blog has been published!", type: "success" });
         setProps(CREATE_BLOG_INITIAL_STATE);
+        setAnyBackProps({ show:false });
+        setShowPreview(false);
        } catch(e) {
           showToast({ message: e.message, type: "danger" });
        }
@@ -63,4 +68,4 @@ const mapDispatchToProps = dispatch => ({
     showToast: (payload: ToastTypes) => dispatch(showToast({ type: "SHOW_TOAST", payload }))
 })
 
-export default compose(memo, connect(null, mapDispatchToProps))(CreateBlogConfirmation);
+export default compose(connect(null, mapDispatchToProps))(CreateBlogConfirmation);

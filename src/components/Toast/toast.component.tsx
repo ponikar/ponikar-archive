@@ -1,4 +1,4 @@
-import { FC, memo, useEffect } from "react";
+import { FC, useEffect } from "react";
 import { AlertTriangle } from "react-feather";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -25,7 +25,7 @@ const Toast:FC<ToastPropsTypes> = ({ hideToast ,toast: { show, message, type } }
 
     if(!show) return <div />;
 
-    return <div className={`lg:w-2/12 items-center flex max-w-xs text-base ${type == "success" ? "text-white" : "text-red"} m-5 rounded-primary w-11/12 fixed bottom-0 left-0 p-3 bg-primary`}>
+    return <div className={`lg:w-2/12 items-center flex max-w-xs text-base z-30 ${type == "success" ? "text-white" : "text-red"} m-5 rounded-primary w-11/12 fixed bottom-0 left-0 p-3 bg-primary`}>
         { AlertTriangle && <AlertTriangle className="mr-2" size={18} /> }
        { message }
     </div>
@@ -39,4 +39,4 @@ const mapStateToProps = createStructuredSelector({
     toast: selectToast
 });
 
-export default compose(memo, connect(mapStateToProps, mapDispatchToProps))(Toast);
+export default compose(connect(mapStateToProps, mapDispatchToProps))(Toast);
