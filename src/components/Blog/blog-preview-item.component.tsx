@@ -9,7 +9,9 @@ export interface BlogPreviewProps {
     id:string;
     article: string;
     createdAt?: string;
-    tags?: string[]
+    tags?: string[];
+    description?: string;
+    preview_image?: string;
 }
 
 

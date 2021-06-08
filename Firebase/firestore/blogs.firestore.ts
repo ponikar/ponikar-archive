@@ -56,3 +56,6 @@ export const getBlogByID = async (id) => {
     return { id: doc.id, ...doc.data(), ...covertTimeStampToString(doc.data())};
 }
 
+export const softDeleteBlog = async (id) => {
+    return await FirestoreRef.doc(id).update({ deleted: true });
+}

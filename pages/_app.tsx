@@ -1,8 +1,7 @@
-import { Provider } from "react-redux"
 import { PersistGate } from "redux-persist/integration/react"
 import '../styles/globals.css'
 import { reduxConfig, reduxWrapper } from "../src/Store/store"
-const { store, persistor } = reduxConfig();
+const { persistor } = reduxConfig();
 import withReduxSaga from "next-redux-saga"
 import Toast from "../src/components/Toast/toast.component";
 import BackPresser from "../src/components/BackPresser/backpresser.component";
@@ -21,13 +20,11 @@ const App = ({ Component, pageProps  }) => {
  
       const [backProps, setAnyBackProps] = useBackPresser();
       
-  return <Provider store={store}>
-         <BackPressContext.Provider value={{ ...backProps, setAnyBackProps }}>
+  return  <BackPressContext.Provider value={{ ...backProps, setAnyBackProps }}>
          <Component {...pageProps} />
             <Toast />
-          { backProps.show &&    <BackPresser /> }
+          { backProps.show &&  <BackPresser /> }
          </BackPressContext.Provider>
-      </Provider>
 }
 
 export default reduxWrapper.withRedux(withReduxSaga(MyApp));

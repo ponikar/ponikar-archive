@@ -1,9 +1,9 @@
 import { ChangeEvent,  FC, useCallback, useRef, useState } from "react";
-import { uploadImage } from "../../Firebase/firestore/blogs.storage";
-import CreateBlogHeader from "../../src/components/Admin/Blog/create-blog-header.component";
-import AdminPageContainer from "../../src/components/Admin/Container/container.component";
-import { CreateBlogTextArea } from "../../src/components/Create-Blog/create-blog.component";
-import { CreateBlogContext, CREATE_BLOG_INITIAL_STATE, BlogProps } from "../../src/Context/create-blog.context";
+import { uploadImage } from "../../../Firebase/firestore/blogs.storage";
+import CreateBlogHeader from "../../../src/components/Admin/Blog/create-blog-header.component";
+import AdminPageContainer from "../../../src/components/Admin/Container/container.component";
+import { CreateBlogTextArea } from "../../../src/components/Create-Blog/create-blog.component";
+import { CreateBlogContext, CREATE_BLOG_INITIAL_STATE, BlogProps } from "../../../src/Context/create-blog.context";
 
 
 const CreateBlog: FC<{}> = () => {
