@@ -6,9 +6,11 @@ import { compose } from "redux"
 import { connect } from "react-redux"
 import { ToastTypes  } from "../../../Store/Reducers/Toast/toast.types"
 import { showToast } from "../../../Store/Reducers/Toast/toast.actions"
-import { storeBlog } from "../../../../Firebase/firestore/blogs.firestore"
+import { storeBlog, updateBlog } from "../../../../Firebase/firestore/blogs.firestore"
 import { uploadImage } from "../../../../Firebase/firestore/blogs.storage"
 import { BackPressContext } from "../../BackPresser/back-presser.context"
+import { isRemoteURL } from "../../../../Firebase/firestore/firestore.helper"
+import { useRouter } from "next/dist/client/router"
 
 
 interface CreateBlogConfirmationProps {
@@ -19,11 +21,13 @@ interface CreateBlogConfirmationProps {
 
 const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast, setShowPreview }) => {
 
+    const { back } = useRouter();
+
     const { setAnyBackProps } = useContext(BackPressContext);
 
     const createBlogProps = useContext(CreateBlogContext);
     
-    const { preiview_image, description, setProps, title, article, tags } = createBlogProps;
+    const { preiview_image, description, setProps, title, article, tags, id } = createBlogProps;
 
     const fileRef = useRef<HTMLInputElement>(null);
     
@@ -38,13 +42,23 @@ const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast, set
         if(!description) return showToast({ message: "Given Fields are required", type: "danger" });
 
         showToast({ message: "Publishing blog", type: "success" });
-        let publicURL = "";
-        if(preiview_image) {
+        let publicURL = preiview_image || "";
+        if(preiview_image && !isRemoteURL(preiview_image)) {
             publicURL = await uploadImage(preiview_image);
         }
-        await storeBlog({ title, article, tags, description, preview_image: publicURL });
+        const props = { title, article, tags, description, preview_image: publicURL };
+
+        if(!id) {
+            // create blog
+            await storeBlog(props);
+            setProps(CREATE_BLOG_INITIAL_STATE);
+        } else {
+            // update blog
+            await updateBlog(id, props);
+            back();
+        }
+
         showToast({ message: "Blog has been published!", type: "success" });
-        setProps(CREATE_BLOG_INITIAL_STATE);
         setAnyBackProps({ show:false });
         setShowPreview(false);
        } catch(e) {

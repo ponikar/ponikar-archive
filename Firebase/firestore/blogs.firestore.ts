@@ -2,6 +2,7 @@ import { Firestore } from "../firebase.config"
 import firebase from "firebase"
 import { fsCreatedTimeStamp, covertTimeStampToString } from "./firestore.helper";
 import { mapBlogWithTags } from "./tags.firestore";
+import { BlogProps } from "../../src/Context/create-blog.context";
 interface storeBlogProps {
     title: string;
     article: string;
@@ -52,10 +53,15 @@ export const getBlogsID = async () => {
 }
 
 export const getBlogByID = async (id) => {
-    const doc = await (await (await FirestoreRef.doc(id)).get());
+    const doc =  await FirestoreRef.doc(id).get();
     return { id: doc.id, ...doc.data(), ...covertTimeStampToString(doc.data())};
 }
 
 export const softDeleteBlog = async (id: string) => {
     return await FirestoreRef.doc(id).update({ deleted: true });
+}
+
+
+export const updateBlog = async (id :string, props:storeBlogProps) => {
+    return await FirestoreRef.doc(id).update(props);
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 import { Edit, Trash } from "react-feather";
 import { connect } from "react-redux";
@@ -23,7 +24,9 @@ const AdminBlogPreview:FC<AdminBlogPreviewProps & BlogPreviewProps> = ({ ponikar
 
        <div className="flex">
          <Trash onClick={_ => ponikarBlogDeleteStarted(id)} className="mr-2" size={18} />
-         <Edit size={18} />
+         <Link href={`/ponikar/blogs/${id}`}>
+          <a>  <Edit size={18} /> </a>
+         </Link>
        </div>
     </div>
 }

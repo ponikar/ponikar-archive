@@ -8,6 +8,8 @@ export interface BlogProps {
     tags?: string[];
     description: string;
     preiview_image: string;
+    id?: null | string;
+    createdAt?: string;
 }
 
 const CREATE_BLOG_INITIAL_PROPS :BlogProps = {
@@ -15,7 +17,8 @@ const CREATE_BLOG_INITIAL_PROPS :BlogProps = {
     article: "",
     tags: [],
     description: "",
-    preiview_image: ""
+    preiview_image: "",
+    id: null
 }
 
 

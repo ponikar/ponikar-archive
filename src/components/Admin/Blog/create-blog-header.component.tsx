@@ -23,7 +23,7 @@ const CreateBlogHeader:FC<CreateBlogHeaderPropsType> = ({ showToast }) => {
         fileRef.current.click();
     }, [fileRef, article]);
 
-    const publishPost = useCallback(async () => {
+    const showConfirmation = useCallback(async () => {
        if(!title || !article) return showToast({ message: "Complete your Article First", type: "danger" });
        
        setAnyBackProps({ show:true, onBackPress: () => setShowPreview(false) });
@@ -36,7 +36,7 @@ const CreateBlogHeader:FC<CreateBlogHeaderPropsType> = ({ showToast }) => {
             <BlogTitle title={title} onChange={setProps} />
             <div> 
                 <MediumButton onClick={openFiles} secondary  title="Add Image" />
-                <MediumButton onClick={publishPost} className="ml-2" title={"Publish"} />
+                <MediumButton onClick={showConfirmation} className="ml-2" title={"Publish"} />
             </div>
         </div>
     </nav>

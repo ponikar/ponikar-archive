@@ -11,3 +11,7 @@ export const parseTimeAStamp = (createdAt: string) => {
     const { seconds } = JSON.parse(createdAt);
     return new Date(seconds * 1000).toDateString();
 }
+
+export const isRemoteURL = (url :string) => {
+    return url && url.substr(0,4) === "http";
+}
