@@ -35,3 +35,15 @@ export interface DeletingPonikarBlog {
 export type START_PONIKAR_BLOG_FETCHING = "START_PONIKAR_BLOG_FETCHING";
 
 export type PonikarBlogsReducersActionType = FetchedPonikarBlogsType | FetchingPonikarBlogError | HydrateReducersType | DeletingPonikarBlog;
+
+export type UPDATE_PONIKAR_BLOG_STARTED = "UPDATE_PONIKAR_BLOG_STARTED";
+
+export interface UpdatePonikarBlogStart {
+    type: UPDATE_PONIKAR_BLOG_STARTED,
+    payload: BlogPreviewProps
+}
+
+export interface UpdatePonikarBlogOffline {
+    type: "UPDATE_PONIKAR_BLOG_OFFLINE",
+    payload: BlogPreviewProps
+}
