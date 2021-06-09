@@ -20,7 +20,18 @@ export interface FetchingPonikarBlogError {
     payload: string;
 }
 
+export interface DeletePonikarBlogStarted {
+    type: DELETE_PONIKAR_BLOG_STARTED,
+    payload: string
+}
+
+export type DELETE_PONIKAR_BLOG_STARTED = "DELETE_PONIKAR_BLOG_STARTED"
+
+export interface DeletingPonikarBlog {
+    type: "DELETING_BLOG",
+    payload: string;
+}
 
 export type START_PONIKAR_BLOG_FETCHING = "START_PONIKAR_BLOG_FETCHING";
 
-export type PonikarBlogsReducersActionType = FetchedPonikarBlogsType | FetchingPonikarBlogError | HydrateReducersType;
+export type PonikarBlogsReducersActionType = FetchedPonikarBlogsType | FetchingPonikarBlogError | HydrateReducersType | DeletingPonikarBlog;

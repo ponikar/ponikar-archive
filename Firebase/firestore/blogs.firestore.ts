@@ -17,7 +17,7 @@ const FirestoreRef = Firestore.collection(`/blogs`)
 export const storeBlog = async ({ title, article, tags = [], description, preview_image }: storeBlogProps) => {
         try {
             const batch = Firestore.batch();
-            const doc =  await FirestoreRef.add({ title, article, tags, description, preview_image ,...fsCreatedTimeStamp});
+            const doc =  await FirestoreRef.add({ title, article, tags, description, preview_image, deleted:false ,...fsCreatedTimeStamp});
             return await mapBlogWithTags(doc.id, tags, batch);
         } catch(e) {
             console.log("ERROR couldn't store doc", e.message);
@@ -56,6 +56,6 @@ export const getBlogByID = async (id) => {
     return { id: doc.id, ...doc.data(), ...covertTimeStampToString(doc.data())};
 }
 
-export const softDeleteBlog = async (id) => {
+export const softDeleteBlog = async (id: string) => {
     return await FirestoreRef.doc(id).update({ deleted: true });
 }

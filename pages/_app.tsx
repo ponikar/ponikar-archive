@@ -2,7 +2,6 @@ import { PersistGate } from "redux-persist/integration/react"
 import '../styles/globals.css'
 import { reduxConfig, reduxWrapper } from "../src/Store/store"
 const { persistor } = reduxConfig();
-import withReduxSaga from "next-redux-saga"
 import Toast from "../src/components/Toast/toast.component";
 import BackPresser from "../src/components/BackPresser/backpresser.component";
 import { BackPressContext } from "../src/components/BackPresser/back-presser.context";
@@ -27,4 +26,4 @@ const App = ({ Component, pageProps  }) => {
          </BackPressContext.Provider>
 }
 
-export default reduxWrapper.withRedux(withReduxSaga(MyApp));
+export default reduxWrapper.withRedux(MyApp);
