@@ -10,7 +10,8 @@ module.exports = {
       grey: "#A5A5A5",
       bcolor: "#DADADA",
       green: "green",
-      red: "red"
+      red: "red",
+      back: "#F3F0F0"
     },
     borderRadius: {
       primary: "2.5px",
