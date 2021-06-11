@@ -1,8 +1,8 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
-import { getRecentBlogs, softDeleteBlog } from "../../../../../Firebase/firestore/blogs.firestore";
+import { getRecentBlogs, softDeleteBlog, updateBlog } from "../../../../../Firebase/firestore/blogs.firestore";
 import { showToast } from "../../Toast/toast.actions";
-import { ponikarBlogDeleteOffine, ponikarBlogFetched, ponikarBlogFetchingError } from "./blogs.actions";
-import { DeletePonikarBlogStarted, DELETE_PONIKAR_BLOG_STARTED, START_PONIKAR_BLOG_FETCHING } from "./blogs.types";
+import { ponikarBlogDeleteOffine, ponikarBlogFetched, ponikarBlogFetchingError, ponikarBlogUpdateOffline } from "./blogs.actions";
+import { DeletePonikarBlogStarted, DELETE_PONIKAR_BLOG_STARTED, START_PONIKAR_BLOG_FETCHING, UpdatePonikarBlogStart, UPDATE_PONIKAR_BLOG_STARTED } from "./blogs.types";
 
 
 
@@ -35,11 +35,30 @@ export function* deleteBlog(action: DeletePonikarBlogStarted) {
        yield put(ponikarBlogDeleteOffine(action.payload));
        yield put(showToast({ payload: { message: "Blog has been deleted!", type: "success" } }));
     } catch(e) {
-        yield put(showToast({ payload: { message: "Couldn't delete Blog!", type: "danger" } }));
+        yield showMessage("Couldn't delete Blog!", "danger");
     }
 }
 
 
+// update blog
+export function* onBlogUpdateStart() {
+    yield takeLatest<UPDATE_PONIKAR_BLOG_STARTED>("UPDATE_PONIKAR_BLOG_STARTED", updatePonikarBlog);
+}
+
+export function* updatePonikarBlog({ payload  } :UpdatePonikarBlogStart) {
+    try {
+        yield showMessage("Applying Changes!","success");
+        yield updateBlog(payload.id, payload);
+        yield put(ponikarBlogUpdateOffline(payload));
+    } catch(e){
+        yield showMessage("Couldn't update blog", "danger")
+    }
+}
+
+function* showMessage(message : string, type : "success" | "danger") {
+     yield put(showToast({ payload: { message, type } }));
+}
+
 export function* ponikarBlogSaga() {
-    yield all([call(onBlogFetchingStart), call(onBlogDeleteStart)])
+    yield all([call(onBlogFetchingStart), call(onBlogDeleteStart), call(onBlogUpdateStart)])
 }

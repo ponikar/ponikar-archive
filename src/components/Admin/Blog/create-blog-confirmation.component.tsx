@@ -11,15 +11,18 @@ import { uploadImage } from "../../../../Firebase/firestore/blogs.storage"
 import { BackPressContext } from "../../BackPresser/back-presser.context"
 import { isRemoteURL } from "../../../../Firebase/firestore/firestore.helper"
 import { useRouter } from "next/dist/client/router"
+import { ponikarBlogUpdateStarted } from "../../../Store/Reducers/ponikar/Blogs/blogs.actions"
+import { BlogPreviewProps } from "../../Blog/blog-preview-item.component"
 
 
 interface CreateBlogConfirmationProps {
     showToast?: (payload: ToastTypes) => void;
     setShowPreview?: (bool:boolean) => void;
+    ponikarBlogUpdateStarted: (props: BlogPreviewProps) => void;
 }
 
 
-const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast, setShowPreview }) => {
+const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast, setShowPreview, ponikarBlogUpdateStarted }) => {
 
     const { back } = useRouter();
 
@@ -41,24 +44,23 @@ const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast, set
        try {
         if(!description) return showToast({ message: "Given Fields are required", type: "danger" });
 
-        showToast({ message: "Publishing blog", type: "success" });
         let publicURL = preiview_image || "";
         if(preiview_image && !isRemoteURL(preiview_image)) {
             publicURL = await uploadImage(preiview_image);
         }
-        const props = { title, article, tags, description, preview_image: publicURL };
+        const props = { id, title, article, tags, description, preview_image: publicURL };
 
         if(!id) {
             // create blog
+            showToast({ message: "Publishing blog", type: "success" });
             await storeBlog(props);
             setProps(CREATE_BLOG_INITIAL_STATE);
+            showToast({ message: "Blog has been published!", type: "success" });
         } else {
             // update blog
-            await updateBlog(id, props);
+            ponikarBlogUpdateStarted(props);
             back();
         }
-
-        showToast({ message: "Blog has been published!", type: "success" });
         setAnyBackProps({ show:false });
         setShowPreview(false);
        } catch(e) {
@@ -69,7 +71,7 @@ const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast, set
     return <div className="lg:w-4/12 border-bcolor font-primary border z-30 fixed-center p-3 bg-white rounded-primary">
     <input type="file" hidden  ref={fileRef} onChange={selectFile} />
     { preiview_image &&  <img src={preiview_image} className="object-cover w-full" /> }
-     <textarea value={description} onChange={e => setProps({ description: e.target.value })} className={style.article_description} placeholder="Add Description about your blog!" />
+     <textarea value={description} maxLength={100} onChange={e => setProps({ description: e.target.value })} className={style.article_description} placeholder="Add Description about your blog!" />
      <div className="flex">
         <MediumButton onClick={publishBlog} title="Publish" />
         <MediumButton onClick={openFile} className="ml-2" secondary title={`${preiview_image ? "Edit" : "Add"} Preview Image`} />
@@ -79,7 +81,8 @@ const CreateBlogConfirmation:FC<CreateBlogConfirmationProps> = ({ showToast, set
 
 
 const mapDispatchToProps = dispatch => ({
-    showToast: (payload: ToastTypes) => dispatch(showToast({ type: "SHOW_TOAST", payload }))
+    showToast: payload => dispatch(showToast({ type: "SHOW_TOAST", payload })),
+    ponikarBlogUpdateStarted: payload => dispatch(ponikarBlogUpdateStarted(payload))
 })
 
 export default compose(connect(null, mapDispatchToProps))(CreateBlogConfirmation);

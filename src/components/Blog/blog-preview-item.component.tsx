@@ -15,16 +15,17 @@ export interface BlogPreviewProps {
 }
 
 
-const BlogPreviewItem :FC<BlogPreviewProps> = ({ title, article, createdAt, id }) => {
+const BlogPreviewItem :FC<BlogPreviewProps> = ({ title, description, createdAt, id, preview_image }) => {
     
     const created_at = parseTimeAStamp(createdAt);
 
     return <section className="bg-white rounded-primary">
-        <Image src="/assets/images/blog.jpg" width={1000} height={800}  />
-        <article className="py-4 px-4">
+        <Image src={preview_image || "/assets/images/blog.jpg"} width={1000} height={800}  />
+
+        <article className="p-4">
         <h2 className="text-xl mb-3 font-secondary"> {title} </h2>
         <span className="text-sm text-highlight"> {created_at} </span>
-        <p className="a-line-highlight font-primary" dangerouslySetInnerHTML={{ __html: marked(`${article.substr(0, 100)}...`) }} /> 
+        <p className="a-line-highlight font-primary"> { description  } </p> 
 
         <Link href={`/blogs/${id}`}>
           <a><MediumButton className="mt-4"  title="Read More" /></a>

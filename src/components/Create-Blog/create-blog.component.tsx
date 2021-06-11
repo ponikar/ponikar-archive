@@ -20,7 +20,6 @@ export const CreateBlogTextArea :FC<CreateBlogTextAreaProps> = ({ title, article
     </div>
 
     <div className="bg-white py-5">
-      {/* <input className="m-5 text-sm" placeholder="Add Tags" /> */}
       <SelectTags />
       <textarea placeholder="Start writing your blog!" value={article} onChange={e => setBlog({ article: e.target.value })} 
       className={`${style.article_container}`} />

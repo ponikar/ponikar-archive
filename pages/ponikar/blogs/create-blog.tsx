@@ -14,9 +14,10 @@ const CreateBlog: FC<{}> = () => {
 
     const appendImage = useCallback(async (e : ChangeEvent<HTMLInputElement>) => {
 
-        const publicURL = await uploadImage(e.target.files);
-        setBlog({ ...blog, article: `${blog.article} ![alt](${publicURL})` })
-        console.log(blog)
+        if(e.target.files.length) {
+            const publicURL = await uploadImage(e.target.files);
+            setBlog({ ...blog, article: `${blog.article} ![alt](${publicURL})` })
+        }
     }, [blog]);
 
     const setProps = (props:object) => setBlog({...blog, ...props});

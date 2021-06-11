@@ -13,6 +13,7 @@ interface storeBlogProps {
 }
 
 
+
 const FirestoreRef = Firestore.collection(`/blogs`)
 
 export const storeBlog = async ({ title, article, tags = [], description, preview_image }: storeBlogProps) => {
@@ -62,6 +63,15 @@ export const softDeleteBlog = async (id: string) => {
 }
 
 
-export const updateBlog = async (id :string, props:storeBlogProps) => {
+interface updateBlogProps {
+    title?: string;
+    article?: string;
+    tags?: string[];
+    uid?: string;
+    description?: string;
+    preview_image?: string;
+}
+
+export const updateBlog = async (id :string, props:updateBlogProps) => {
     return await FirestoreRef.doc(id).update(props);
 }
