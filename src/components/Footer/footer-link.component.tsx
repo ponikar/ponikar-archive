@@ -1,12 +1,10 @@
 import Link from "next/link"
 import { FC } from "react"
+import { MenuDataTypes } from "../../data/static-menu.data";
 
-interface FooterLinkProps {
-    title: string;
-    href?: string;
-}
 
-const FooterLink :FC<FooterLinkProps> = ({ title, href = "#" }) => {
+
+const FooterLink :FC<MenuDataTypes> = ({ title, href = "#" }) => {
     return <Link href={href}>
     <a className="mb-1"> {title} </a>
     </Link>

@@ -4,11 +4,19 @@
 
 .article_container { 
    margin-top: 20px;
-   width: 100%;
    height: 80vh; 
-   resize: none;
    overflow-y: scroll;
-   padding:20px;
+   padding: 20px;
+}
+
+.article_description, .article_container {
+    width: 100%;
+    resize: none;
+}
+
+.article_description {
+    height: 200px;
+    margin-top: 20px;
 }
 
 .title_container {
