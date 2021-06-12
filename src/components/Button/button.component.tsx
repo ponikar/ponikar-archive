@@ -11,8 +11,8 @@ interface PrimaryButtonProps {
 
 type ButtonProps = PrimaryButtonProps & ButtonHTMLAttributes<HTMLButtonElement>
 
-const PrimaryButton :FC<ButtonProps>  = ({ title, className = "" }) => {
-    return <button className={`bg-primary rounded-primary lg:text-xs text-xs lg:px-8 px-4 py-3 text-white font-secondary ${className}`}>
+const PrimaryButton :FC<ButtonProps>  = ({ title, className = "", ...props }) => {
+    return <button {...props} className={`bg-primary rounded-primary lg:text-xs text-xs lg:px-8 px-4 py-3 text-white font-secondary ${className}`}>
         { title }
     </button>    
 }

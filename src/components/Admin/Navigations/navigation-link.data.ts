@@ -21,7 +21,7 @@ export const adminNavigationData :MenuDataTypes[] = [{
     Icon: GitHub
 }, {
     title: "Create Project",
-    href: "/ponikar/projects/create",
+    href: "/ponikar/projects/create-project",
     Icon: GitBranch
 }, {
     title: "Responses",

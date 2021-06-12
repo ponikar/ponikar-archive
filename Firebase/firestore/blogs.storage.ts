@@ -23,4 +23,4 @@ export const uploadImage = async(image:FileList | string) => {
     }
 }
 
-const makeBlogUrl = async url => await(await fetch(url)).blob();   
+export const makeBlogUrl = async url => await(await fetch(url)).blob();   
