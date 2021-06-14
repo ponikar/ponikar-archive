@@ -7,16 +7,11 @@ import { TextArea, TextInput } from "../../src/components/Input/input.component"
 import { Loading } from "../../src/components/Loading/loading.component";
 import { checkIfEmpty } from "../../src/Helpers/State/state.helper";
 import { useFormHelpers } from "../../src/hooks/use-form-helpers.hook";
+import { ProjectProps } from "../../src/Store/Reducers/ponikar/projects/projects.types";
 import { FlexCenter } from "../../src/TailwindClasses/flex.classes";
 
 
-export interface ProjectProps  {
-    title: string;
-    description: string;
-    github_url: string;
-    site_url: string;
-    images: string[];
-}
+
 
 const PROJECT_DEFAULT_STATE :ProjectProps = {
     title: "",

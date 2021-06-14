@@ -1,6 +1,7 @@
 import { GetStaticProps } from "next"
 import { FC } from "react"
 import { getRecentBlogs } from "../Firebase/firestore/blogs.firestore"
+import { getRecentProjects } from "../Firebase/firestore/projects.firestore"
 import PageBase from "../src/components/Base/page-base.component"
 import AboutSection from "../src/components/Index/about-section.component"
 import BlogSection from "../src/components/Index/blogs-section.component"
@@ -26,8 +27,9 @@ const Index :FC<LandingPageTypes> = ({ children, ...props }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
     const blogs = await getRecentBlogs();
+    const projects = await  getRecentProjects(4);
     return {
-        props:{ blogs }
+        props:{ blogs, projects }
     }
 }
 

@@ -55,7 +55,7 @@ export function* updatePonikarBlog({ payload  } :UpdatePonikarBlogStart) {
     }
 }
 
-function* showMessage(message : string, type : "success" | "danger") {
+export function* showMessage(message : string, type : "success" | "danger") {
      yield put(showToast({ payload: { message, type } }));
 }
 

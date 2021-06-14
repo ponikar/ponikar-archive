@@ -16,7 +16,7 @@ export const sagaMiddleWare = createSagaMiddleware();
 
 const middlewares = [sagaMiddleWare];
 
-// process.env.NODE_ENV == "development" && middlewares.push(reduxLogger);
+process.env.NODE_ENV == "development" && middlewares.push(reduxLogger);
 
 
 

@@ -18,12 +18,6 @@ const Blogs: FC<BlogsProps> = () => {
 
     const { message, blogs } = useSelector(selectBlogs);
 
-
-    const deleteBlog =  useCallback(async (id: string) => {
-
-    }, []); 
-
-
     return <AdminPageContainer>
         <div className="grid grid-cols-4 gap-3">
         { blogs.map(blog  => <AdminBlogPreview key={blog.id} {...blog} />) }
@@ -39,7 +33,6 @@ export const getStaticProps :GetStaticProps = reduxWrapper.getStaticProps(async 
         dispatch(ponikarBlogFetched({ payload: blogs }));
         return { 
             props: { },
-            revalidate:60
         };
 })
 

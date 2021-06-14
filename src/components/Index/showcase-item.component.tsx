@@ -1,16 +1,15 @@
 import { FC } from "react"
 import Image from "next/image"
 import Link from "next/link";
+import { ProjectProps } from "../../Store/Reducers/ponikar/projects/projects.types";
 
-interface ShowcaseItemProps {
-    src?: string;
-    href?: string;
-}
 
-const ShowcaseItem :FC<ShowcaseItemProps> = ({ src = "/assets/images/showcase.jpg", href = "#" }) => {
-    return <Link href={href}>
+
+const ShowcaseItem :FC<ProjectProps> = ({ images, title, }) => {
+    console.log(images);
+    return <Link href="#">
         <section className="w-full" style={{ height: "200px" }}>
-            <Image src={src} width={1000} height={1000} objectFit="contain" />
+            <Image  src={images[0] || "/assets/images/showcase.jpg"} width={1000} height={1000} objectFit="cover" />
         </section>
     </Link>
 }
