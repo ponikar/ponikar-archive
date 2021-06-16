@@ -6,6 +6,14 @@ export interface ProjectReducersTypes {
     projects: ProjectProps[],
 }
 
+export const PROJECT_DEFAULT_STATE :ProjectProps = {
+    title: "",
+    description: "",
+    github_url: "",
+    site_url: "",
+    images: []
+}
+
 export interface ProjectProps  {
     title: string;
     description: string;
@@ -47,4 +55,11 @@ export interface ProjectDeleteStartedType {
     payload: ProjectProps
 }
 
-export type ProjectActionsType = ProjectFetchedTypes | NewProjectCreatedTypes | ProjectUpdatedType | ProjectDeletedType | HydrateReducersType
+export type ProjectActionsType = ProjectFetchedTypes | NewProjectCreatedTypes | ProjectUpdatedType | ProjectDeletedType | HydrateReducersType;
+
+export type PROJECT_UPDATE_STARTED = "PROJECT_UPDATED_STARTED";
+
+export interface projectUpdateStartedType {
+    type: PROJECT_UPDATE_STARTED,
+    payload: ProjectProps
+}

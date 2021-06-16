@@ -6,6 +6,7 @@ import { iconProps } from "../../../Helpers/State/state.helper";
 import { projectDeletedStarted } from "../../../Store/Reducers/ponikar/projects/projects.actions";
 import { ProjectProps } from "../../../Store/Reducers/ponikar/projects/projects.types";
 import ShowcaseItem from "../../Index/showcase-item.component";
+import FancyLink from "../../Link/link.component";
 
 
 interface ProjectItemProps extends ProjectProps {
@@ -23,7 +24,7 @@ const ProjectItem:FC<ProjectItemProps> = ({ children, projectDeletedStarted ,...
             <h3 className="text-base"> {title} </h3>
             <div className="flex  items-center">
                 <Trash onClick={_ => projectDeletedStarted(props)} {...iconProps}  size={18} />
-                <Edit {...iconProps} size={18}  />
+                <FancyLink href={`/ponikar/projects/${id}`}> <Edit {...iconProps} size={18}  /> </FancyLink>
             </div>
         </div>
         <p className="px-2 pb-2 text-xs text-highlight">
