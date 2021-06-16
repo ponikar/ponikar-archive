@@ -1,7 +1,8 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { getRecentBlogs } from "../../../../../Firebase/firestore/blogs.firestore";
-import { projectFetched } from "./projects.actions";
-import { PROJECT_FETCHING_STARTED } from "./projects.types";
+import { softDeleteProject } from "../../../../../Firebase/firestore/projects.firestore";
+import { projectDeleted, projectFetched } from "./projects.actions";
+import { ProjectDeleteStartedType, PROJECT_DELETED_STARTED, PROJECT_FETCHING_STARTED } from "./projects.types";
 
 
 
@@ -18,8 +19,20 @@ export function* fetchProjectAsync() {
     }
 }
 
+export function* onProjectDeleteStart() {
+    yield takeLatest<PROJECT_DELETED_STARTED>("PROJECT_DELETED_STARTED", deleteProjectAsync)
+}
+
+export function* deleteProjectAsync({ payload }: ProjectDeleteStartedType) {
+    try {
+        yield softDeleteProject(payload.id);
+        yield put(projectDeleted(payload));
+    } catch(e) {
+        yield console.log("DELETE PROJECT ERROR", e.message);
+    }
+}
 
 
 export function* projectSagas() {
-    yield all([call(onProjectFetchStart)]);
+    yield all([call(onProjectFetchStart), call(onProjectDeleteStart)]);
 }

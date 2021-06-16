@@ -1,4 +1,5 @@
 import { ProjectActionsType, ProjectReducersTypes } from "./projects.types";
+import { deleteProject } from "./projects.utils";
 
 
 const PROJECT_INITIAL_STATE:ProjectReducersTypes = {
@@ -15,6 +16,8 @@ const projectReducers = (state = PROJECT_INITIAL_STATE, action :ProjectActionsTy
             return {...state, projects: action.payload};
         case "NEW_PROJECT_CREATED":
             return {...state, projects: [...state.projects, action.payload]};
+        case "PROJECT_DELETED":
+            return deleteProject(state, action.payload);
         default:
             return state;
     }

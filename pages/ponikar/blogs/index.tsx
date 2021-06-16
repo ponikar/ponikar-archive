@@ -18,6 +18,7 @@ const Blogs: FC<BlogsProps> = () => {
 
     const { message, blogs } = useSelector(selectBlogs);
 
+
     return <AdminPageContainer>
         <div className="grid grid-cols-4 gap-3">
         { blogs.map(blog  => <AdminBlogPreview key={blog.id} {...blog} />) }

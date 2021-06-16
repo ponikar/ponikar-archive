@@ -19,3 +19,7 @@ export const isRemoteURL = (url :string) => {
 export const mapDocsWithTimeStamps = (docs: firebase.firestore.QueryDocumentSnapshot[]) => {
     return docs.map(doc => ({ ...doc.data(), ...covertTimeStampToString(doc.data()), id: doc.id }));
 }
+
+export const getDocuments = (ref :firebase.firestore.CollectionReference) => {
+    return ref.orderBy("createdAt", "desc");
+}

@@ -1,4 +1,4 @@
-import { NewProjectCreatedTypes, ProjectDeletedType, ProjectFetchedTypes, ProjectFetchingStartedTypes, ProjectProps, ProjectUpdatedType } from "./projects.types";
+import { NewProjectCreatedTypes, ProjectDeletedType, ProjectDeleteStartedType, ProjectFetchedTypes, ProjectFetchingStartedTypes, ProjectProps, ProjectUpdatedType } from "./projects.types";
 
 
 
@@ -24,5 +24,11 @@ export const projectUpdated = (payload: ProjectProps) :ProjectUpdatedType => ({
 
 export const projectDeleted = (payload: ProjectProps) :ProjectDeletedType => ({
     type: "PROJECT_DELETED",
+    payload
+});
+
+
+export const projectDeletedStarted = (payload: ProjectProps) :ProjectDeleteStartedType => ({
+    type: "PROJECT_DELETED_STARTED",
     payload
 });

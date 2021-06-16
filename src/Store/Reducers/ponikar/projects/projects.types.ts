@@ -41,4 +41,10 @@ export interface ProjectDeletedType {
     payload: ProjectProps
 }
 
+export type PROJECT_DELETED_STARTED = "PROJECT_DELETED_STARTED"
+export interface ProjectDeleteStartedType {
+    type: PROJECT_DELETED_STARTED,
+    payload: ProjectProps
+}
+
 export type ProjectActionsType = ProjectFetchedTypes | NewProjectCreatedTypes | ProjectUpdatedType | ProjectDeletedType | HydrateReducersType

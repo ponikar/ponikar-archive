@@ -1,6 +1,6 @@
 import { ProjectProps } from "../../src/Store/Reducers/ponikar/projects/projects.types";
 import { Firestore } from "../firebase.config";
-import { fsCreatedTimeStamp, mapDocsWithTimeStamps } from "./firestore.helper";
+import { fsCreatedTimeStamp, getDocuments, mapDocsWithTimeStamps } from "./firestore.helper";
 import { storeProjectImages } from "./projects.storage";
 
 
@@ -15,7 +15,10 @@ export const storeProject = async (project:ProjectProps) => {
 
 
 export const getRecentProjects = async (limit = 5) => {
-    const docs = await (await projectRef
-                    .limit(limit).get()).docs;
-    return docs.map(doc => doc.data());
+    const docs = await (await getDocuments(projectRef).limit(limit).get()).docs;
+    return mapDocsWithTimeStamps(docs);
+}
+
+export const softDeleteProject = (id: string) => {
+    return projectRef.doc(id).update({ deleted: true });
 }
