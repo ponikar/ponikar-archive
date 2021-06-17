@@ -1,6 +1,7 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { getRecentBlogs, softDeleteBlog, updateBlog } from "../../../../../Firebase/firestore/blogs.firestore";
 import { showToast } from "../../Toast/toast.actions";
+import { showMessage } from "../../Toast/toast.sagas";
 import { ponikarBlogDeleteOffine, ponikarBlogFetched, ponikarBlogFetchingError, ponikarBlogUpdateOffline } from "./blogs.actions";
 import { DeletePonikarBlogStarted, DELETE_PONIKAR_BLOG_STARTED, START_PONIKAR_BLOG_FETCHING, UpdatePonikarBlogStart, UPDATE_PONIKAR_BLOG_STARTED } from "./blogs.types";
 
@@ -55,9 +56,7 @@ export function* updatePonikarBlog({ payload  } :UpdatePonikarBlogStart) {
     }
 }
 
-export function* showMessage(message : string, type : "success" | "danger") {
-     yield put(showToast({ payload: { message, type } }));
-}
+
 
 export function* ponikarBlogSaga() {
     yield all([call(onBlogFetchingStart), call(onBlogDeleteStart), call(onBlogUpdateStart)])

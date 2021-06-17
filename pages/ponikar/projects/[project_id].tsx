@@ -26,7 +26,6 @@ const UpdateProject:FC<UpdateProjectProps> = ({ updateProjectStarted }) => {
     const getProject = useCallback(async () => {
         if(project_id) {
             const result = await getProjectFirestore(project_id);
-            console.log("PRJECT", result);
             setProject(result);
         }
     }, [project_id]);

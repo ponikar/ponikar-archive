@@ -1,6 +1,9 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { getRecentBlogs } from "../../../../../Firebase/firestore/blogs.firestore";
+import { isRemoteURL } from "../../../../../Firebase/firestore/firestore.helper";
 import { softDeleteProject, updateProject } from "../../../../../Firebase/firestore/projects.firestore";
+import { storeProjectImages } from "../../../../../Firebase/firestore/projects.storage";
+import { showMessage } from "../../Toast/toast.sagas";
 import { projectDeleted, projectFetched, projectUpdated } from "./projects.actions";
 import { ProjectDeleteStartedType, projectUpdateStartedType, PROJECT_DELETED_STARTED, PROJECT_FETCHING_STARTED, PROJECT_UPDATE_STARTED } from "./projects.types";
 
@@ -38,11 +41,31 @@ export function* onProjectUpdateStart() {
 
 export function* updateProjectAsync({ payload }: projectUpdateStartedType) {
     try {
-        yield updateProject(payload.id, payload);
-        yield projectUpdated(payload);
+        yield showMessage("Updating Project", "success");
+        const images = yield uploadNewImages(payload.images);// storage call
+        yield updateProject(payload.id, {...payload, images}); // firestore call
+        yield put(projectUpdated({...payload, images })); // offline action dispatcher
+        yield showMessage("Project updated", "success");
     } catch(e) {
+        yield showMessage("Couldn't update Project", "danger")
         console.log("PROJECT UPDATE ERROR", e.message);
     }
+}
+
+// uploading new images from the Images array 
+export function* uploadNewImages(images: string[]) {
+    const uploadedImages = [];
+    for(const image of images) {
+        if(!isRemoteURL(image)) {
+            yield console.log("UPLOADING REMOTE URL");
+            const [url] = yield storeProjectImages([image]);
+            uploadedImages.push(url);
+        } else {
+            uploadedImages.push(image);
+        }
+       
+    }
+    return uploadedImages;
 }
 
 export function* projectSagas() {
