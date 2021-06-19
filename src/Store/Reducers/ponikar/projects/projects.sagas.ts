@@ -28,6 +28,7 @@ export function* onProjectDeleteStart() {
 
 export function* deleteProjectAsync({ payload }: ProjectDeleteStartedType) {
     try {
+        yield showMessage("Deleting Project", "success");
         yield softDeleteProject(payload.id);
         yield put(projectDeleted(payload));
     } catch(e) {

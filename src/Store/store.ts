@@ -18,20 +18,17 @@ const middlewares = [sagaMiddleWare];
 
 process.env.NODE_ENV == "development" && middlewares.push(reduxLogger);
 
+const persistedReducer = persistReducer(persistedConfig, rootReducers)
+const configureStore = (initialState = {})  =>  createStore(persistedReducer,initialState,applyMiddleware(...middlewares));
+export const persistor = persistStore(configureStore());
 
 
-export const reduxConfig = (initialState = {}) => {
-    const persistedReducer = persistReducer(persistedConfig, rootReducers)
-    const store = createStore(persistedReducer,initialState,applyMiddleware(...middlewares));
-    const persistor = persistStore(store);
-    
+
+const makeStore = (context) => {
+    const store = configureStore(context);
     sagaMiddleWare.run(rootSagas);
-
-
-    return { store, persistor };
+    return store;
 }
-
-const makeStore = (context) => reduxConfig(context).store
 
 export const reduxWrapper = createWrapper(makeStore, { debug: false });
 

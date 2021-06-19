@@ -14,7 +14,7 @@ const AdminNavigaton:FC<{}> = () => {
 
     const [toggle, setToggle] = useState(false);
 
-    return <motion.nav  animate={!toggle ? "closed" : "opened"} {...navAnimatedProps} className="fixed font-primary left-0 top-0 h-full w-56 border-r border-grey  bg-back">
+    return <motion.nav  animate={!toggle ? "closed" : "opened"} {...navAnimatedProps} className="fixed z-20 font-primary left-0 top-0 h-full w-56 border-r border-grey  bg-back">
            <div className="p-2 mt-3">
             { !toggle && <Menu className="cursor-pointer" onClick={_ => setToggle(true)} size={24}  /> }
         </div>

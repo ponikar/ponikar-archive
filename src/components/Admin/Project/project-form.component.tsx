@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useState } from "react";
-import { checkIfEmpty } from "../../../Helpers/State/state.helper";
+import { checkIfEmpty, isValidURL } from "../../../Helpers/State/state.helper";
 import { useFormHelpers } from "../../../hooks/use-form-helpers.hook";
 import { ProjectProps, PROJECT_DEFAULT_STATE } from "../../../Store/Reducers/ponikar/projects/projects.types";
 import { FlexCenter } from "../../../TailwindClasses/flex.classes";
@@ -35,9 +35,14 @@ const ProjectForm:FC<ProjectFormProps> = ({ project, setProject, submitCallback 
                if(!checkIfEmpty(project, ["title", "description",])) {
                    throw new Error("The given fields is required") 
                }
+
+               if(site_url && !isValidURL(project.site_url)) throw new Error("Please Enter valid Site URL!"); 
+               if(github_url && !isValidURL(project.github_url)) throw new Error("Please Enter valid Github URL!"); 
+
                setToggleForm(true);
            } else {
                // submit the form
+               if(!project.images.length) throw new Error("Upload at least one Image");
                setHelpers({ isLoading: true });
                await submitCallback(project);
                setHelpers({ isLoading:false, success: true, message: "Project has been published" });
