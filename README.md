@@ -13,6 +13,7 @@ Say Hi, 👋 <br />
 😎 TypeScript <br />
 🤖 JavaScript <br />
 🚀 NodeJs | Express JS <br />
+🚀 React | React Native | Redux | Redux Saga | Next.js <br />
 🔥 PHP Laravel <br />
 🤩 Figma UI desing <br />
 🤓 Firebase | Firestore | Cloud Function <br />
@@ -67,5 +68,5 @@ Happy Coding.
 
 ![ponikar-bye](https://media.giphy.com/media/GB0lKzzxIv1te/giphy.gif)
 
-Last updated 20th June, 00:44 AM.
+Last updated 20th June, 00:59 AM.
 
