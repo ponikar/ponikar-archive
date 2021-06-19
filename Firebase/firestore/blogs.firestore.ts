@@ -35,7 +35,7 @@ export const getDocumentsByTag = async (tag: string) => {
 }
 
 
-export const getRecentBlogs = async (limit = 3) => {
+export const getRecentBlogs = async (limit = 3) :Promise<any> => {
     try {
         const docs = await (await FirestoreRef.orderBy("createdAt", "desc").limit(limit).get()).docs;
         return mapDocsWithTimeStamps(docs);

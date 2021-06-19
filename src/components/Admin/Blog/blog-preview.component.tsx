@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { Edit, Trash } from "react-feather";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import { ponikarBlogDeleteStarted } from "../../../Store/Reducers/ponikar/Blogs/blogs.actions";
 import { BlogPreviewProps } from "../../Blog/blog-preview-item.component";
 import { MediumButton } from "../../Button/button.component";
@@ -37,4 +38,4 @@ const mapStateToDispatch = dispatch => ({
 });
 
 
-export default connect(null, mapStateToDispatch)(AdminBlogPreview);
+export default compose(connect(null, mapStateToDispatch), memo)(AdminBlogPreview);

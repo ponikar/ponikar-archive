@@ -38,4 +38,4 @@ const mapStateToDispatch = dispatch => ({
 });
 
 
-export default compose(memo, connect(null, mapStateToDispatch))(ProjectItem);
+export default compose(connect(null, mapStateToDispatch), memo)(ProjectItem);

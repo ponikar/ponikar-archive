@@ -14,7 +14,7 @@ export const storeProject = async (project:ProjectProps) => {
 }
 
 
-export const getRecentProjects = async (limit = 5) => {
+export const getRecentProjects = async (limit = 5) :Promise<any> => {
     const docs = await (await getDocuments(projectRef).limit(limit).get()).docs;
     return mapDocsWithTimeStamps(docs);
 }
