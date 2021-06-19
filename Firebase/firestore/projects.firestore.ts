@@ -31,3 +31,8 @@ export const getProjectFirestore = async (id) :Promise<any> => {
     const doc = await projectRef.doc(id).get();
     return mapSingleDocWithTimeStamps(doc);
 }
+
+export const getProjectsID = async () => {
+    const projects = (await projectRef.get()).docs;
+    return projects.map(p => ({ params: { project_id: p.id } }));
+}
