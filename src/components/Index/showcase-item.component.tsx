@@ -9,7 +9,11 @@ const ShowcaseItem :FC<ProjectProps> = ({ images, title, }) => {
 
     return <Link href="#">
         <section>
-            <Image  src={images[0] || "/assets/images/showcase.jpg"} width={1000} height={1000} objectFit="cover" />
+            <Image alt={title}
+            src={images[0] || "/assets/images/showcase.jpg"} 
+            width={1000} 
+            height={1000} 
+            objectFit="cover" />
         </section>
     </Link>
 }
