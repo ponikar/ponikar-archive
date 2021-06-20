@@ -15,7 +15,8 @@ module.exports = {
     },
     borderRadius: {
       primary: "2.5px",
-      highlight: "1.5px"
+      highlight: "1.5px",
+      secondary: "5px"
     }
   },
   variants: {
