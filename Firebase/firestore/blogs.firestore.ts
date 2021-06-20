@@ -1,6 +1,6 @@
 import { Firestore } from "../firebase.config"
 import firebase from "firebase"
-import { fsCreatedTimeStamp, covertTimeStampToString, mapDocsWithTimeStamps } from "./firestore.helper";
+import { fsCreatedTimeStamp, covertTimeStampToString, mapDocsWithTimeStamps, getDocuments } from "./firestore.helper";
 import { mapBlogWithTags } from "./tags.firestore";
 import { BlogProps } from "../../src/Context/create-blog.context";
 interface storeBlogProps {
@@ -35,9 +35,9 @@ export const getDocumentsByTag = async (tag: string) => {
 }
 
 
-export const getRecentBlogs = async (limit = 3) :Promise<any> => {
+export const getRecentBlogs = async (limit = 3, startAt = 0) :Promise<any> => {
     try {
-        const docs = await (await FirestoreRef.orderBy("createdAt", "desc").limit(limit).get()).docs;
+        const docs = await (await getDocuments(FirestoreRef).limit(limit).get()).docs;
         return mapDocsWithTimeStamps(docs);
     } catch(e) {
         throw new Error(e.message);

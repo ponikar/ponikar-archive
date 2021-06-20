@@ -1,0 +1,6 @@
+{
+    "atlascode.bitbucket.pipelines.explorerEnabled": false,
+    "eslint.alwaysShowStatus": true,
+    "prettier.enableDebugLogs": true,
+    "editor.formatOnSave": true
+}
