@@ -1,43 +1,32 @@
 import { FC } from 'react';
 import { ProjectProps } from '../../Store/Reducers/ponikar/projects/projects.types';
 import NextImage from '../Image/next-image.component';
-import { motion } from 'framer-motion';
-import PrimaryButton from '../Button/button.component';
+import { MediumButton } from '../Button/button.component';
+import { minimizeString } from '../../Helpers/State/state.helper';
+import FancyLink from '../Link/link.component';
 
-const NextAnimatedImage = motion(NextImage);
-const Project: FC<ProjectProps> = ({ images, title, description }) => {
+const Project: FC<ProjectProps> = ({ images, title, description, id }) => {
     return (
-        <motion.section
-            initial="rest"
-            whileHover="hover"
-            className="p-3 bg-white primary-font overflow-hidden relative"
-        >
-            <NextAnimatedImage
+        <section className="p-3 font-primary h-full flex  bg-white primary-font overflow-hidden relative">
+            <NextImage
                 src={images[0]}
-                height={1000}
+                height={150}
                 className="rounded-secondary"
-                width={1000}
+                width={150}
                 objectFit="cover"
             />
-            <motion.div
-                variants={{
-                    rest: { top: 300 },
-                    hover: { top: 0 },
-                }}
-                className="absolute p-5 left-0 w-full bg-white-transparent h-full"
-            >
-                <h2 className="my-2 text-lg"> {title} </h2>
-                <p className="tstyle={{ top: 400 }}ext-sm text-highlight">
-                    {' '}
-                    {description.substr(0, 200)}{' '}
+            <div className="w-full ml-3 relative flex flex-col bg-white-transparent h-full">
+                <h2 className="text-lg"> {minimizeString(title, 20)} </h2>
+                <p className="text-sm text-highlight">
+                    {minimizeString(description, 30)}
                 </p>
-
-                <PrimaryButton
-                    className="bottom-5 absolute left-3"
-                    title="Explore"
-                />
-            </motion.div>
-        </motion.section>
+                <div className="absolute bottom-0">
+                    <FancyLink href={`/projects/${id}`}>
+                        <MediumButton textClassName="text-sm" title="Explore" />
+                    </FancyLink>
+                </div>
+            </div>
+        </section>
     );
 };
 

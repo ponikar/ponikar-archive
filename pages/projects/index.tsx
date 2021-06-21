@@ -14,7 +14,7 @@ const Projects: FC<ProjectsPageProps> = ({ projects }) => {
         <Pagebase>
             <Section
                 isContainer
-                className="grid lg:grid-cols-4 md:grid-cols-2 gap-5 sm:grid-cols-1"
+                className="grid lg:grid-cols-3  md:grid-cols-2 gap-5 sm:grid-cols-1"
             >
                 {projects.map((project) => (
                     <Project key={project.id} {...project} />

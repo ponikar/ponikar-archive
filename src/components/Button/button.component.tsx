@@ -4,6 +4,7 @@ interface PrimaryButtonProps {
     title: string;
     className?: string;
     secondary?: boolean;
+    textClassName?: string;
 }
 
 type ButtonProps = PrimaryButtonProps & ButtonHTMLAttributes<HTMLButtonElement>;
@@ -27,6 +28,7 @@ export const MediumButton: FC<ButtonProps> = ({
     title,
     className = '',
     secondary,
+    textClassName = 'text-base',
     ...props
 }) => {
     return (
@@ -34,7 +36,7 @@ export const MediumButton: FC<ButtonProps> = ({
             {...props}
             className={` ${
                 secondary ? 'bg-white text-primary' : 'bg-primary text-white'
-            } rounded-primary text-base px-3 py-1 pt-2 font-primary ${className}`}
+            } rounded-primary ${textClassName}  px-3 py-1 pt-2 font-primary ${className}`}
         >
             {title}
         </button>

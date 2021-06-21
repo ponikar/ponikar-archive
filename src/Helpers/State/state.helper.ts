@@ -17,3 +17,9 @@ const REGEX_URL = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]
 export const isValidURL = (url :string) => {
     return REGEX_URL.test(url.toLowerCase());
 }
+
+export const minimizeString = (str :string, limit: number) => {
+    if(str.length <= limit) return str;
+
+    return `${str.substr(0, limit)}...`;
+}
