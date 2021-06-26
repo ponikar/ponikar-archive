@@ -14,13 +14,12 @@ interface ProjectPageProps {
 }
 
 const Project: FC<ProjectPageProps> = ({ project }) => {
-    const { title, description, images, createdAt } = project;
-    const time = parseTimeAStamp(createdAt);
+    const { title, description, images } = project;
     return (
         <ReadingArea>
             <header className="font-secondary my-8 ">
                 <h1 className="lg:text-3xl text-xl"> {title} </h1>
-                <div className="text-sm mt-2"> {time} &bull; 2 min Read </div>
+                {/* <div className="text-sm mt-2"> {time} &bull; 2 min Read </div> */}
             </header>
             <div className="grid grid-cols-2 gap-5">
                 {images.map((image, index) => (
