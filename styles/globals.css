@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-    background-color: #F3F0F0;
+    background-color: #f3f0f0;
     scroll-behavior: smooth;
 }
 
@@ -29,7 +29,33 @@ body {
     line-height: 20px;
 }
 
-
-input:focus, button:focus, textarea:focus {
+input:focus,
+button:focus,
+textarea:focus {
     outline: none;
+}
+
+.fixed-center {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+}
+
+.bg-white-transparent {
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(15px);
+}
+
+.scroll-container {
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    max-width: 100%;
+    width: 100%;
+}
+
+.scroll-item {
+    flex-shrink: 0;
+    scroll-snap-align: center;
 }

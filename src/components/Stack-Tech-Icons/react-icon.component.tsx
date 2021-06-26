@@ -8,7 +8,7 @@ import Parallex from "../Animations/Parellex/parallex.component";
         return <Parallex>
              <div className="flex mr-10 justify-end">
         <Icon /> 
-    </div>
+        </div>
         </Parallex>
     }
 

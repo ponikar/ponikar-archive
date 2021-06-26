@@ -1,16 +1,29 @@
-import { Provider } from "react-redux"
-import { PersistGate } from "redux-persist/integration/react"
-import '../styles/globals.css'
-import { reduxConfig, reduxWrapper } from "../src/Store/store"
-const { store, persistor } = reduxConfig();
-import withReduxSaga from "next-redux-saga"
+import { PersistGate } from 'redux-persist/integration/react';
+import '../styles/globals.css';
+import { persistor, reduxWrapper } from '../src/Store/store';
+import Toast from '../src/components/Toast/toast.component';
+import BackPresser from '../src/components/BackPresser/backpresser.component';
+import { BackPressContext } from '../src/components/BackPresser/back-presser.context';
+import { useBackPresser } from '../src/components/BackPresser/back-presser.hook';
 
-function MyApp({ Component, pageProps }) {
-  return  <PersistGate loading={null} persistor={persistor}>
-         <Provider store={store}>
-            <Component {...pageProps} />
-        </Provider>
+function MyApp(props) {
+    return (
+        <PersistGate loading={null} persistor={persistor}>
+            <App {...props} />
         </PersistGate>
+    );
 }
 
-export default reduxWrapper.withRedux(withReduxSaga(MyApp));
+const App = ({ Component, pageProps }) => {
+    const [backProps, setAnyBackProps] = useBackPresser();
+
+    return (
+        <BackPressContext.Provider value={{ ...backProps, setAnyBackProps }}>
+            <Component {...pageProps} />
+            <Toast />
+            {backProps.show && <BackPresser />}
+        </BackPressContext.Provider>
+    );
+};
+
+export default reduxWrapper.withRedux(MyApp);

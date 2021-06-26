@@ -2,12 +2,17 @@ import { FireStorage } from "../firebase.config"
 import uuid from "react-uuid"
 
 
-export const uploadImage = async(files:FileList) => {
-    
+export const uploadImage = async(image:FileList | string) => {
+        
     try {
-        const url =  URL.createObjectURL(files[0]);
-
-        const blogURL = await (await fetch(url)).blob();    
+        let blogURL = null;
+        if(typeof image === "string") {
+            blogURL = await makeBlogUrl(image); 
+        } else {
+            const url =  URL.createObjectURL(image[0]);
+            blogURL = await makeBlogUrl(url);
+        }
+       
         const imgRef = FireStorage.ref(`/blogs/${uuid()}`);
         await imgRef.put(blogURL);
 
@@ -17,3 +22,5 @@ export const uploadImage = async(files:FileList) => {
         throw new Error(e.message);
     }
 }
+
+export const makeBlogUrl = async url => await(await fetch(url)).blob();   

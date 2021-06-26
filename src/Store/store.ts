@@ -3,8 +3,9 @@ import storage from 'redux-persist/lib/storage'
 import { persistReducer, persistStore } from "redux-persist"
 import { rootReducers } from "./Reducers/root_reducers";
 import createSagaMiddleware from "redux-saga"
-import {createWrapper} from 'next-redux-wrapper';
+import {Context, createWrapper} from 'next-redux-wrapper';
 import rootSagas from "./root_saga";
+import reduxLogger from "redux-logger"
 
 const persistedConfig = {
     key: "_blah",
@@ -13,20 +14,22 @@ const persistedConfig = {
 
 export const sagaMiddleWare = createSagaMiddleware();
 
-const persistedReducer = persistReducer(persistedConfig, rootReducers);
+const middlewares = [sagaMiddleWare];
 
-const makeStore = (state = {}) => {
-   const store = createStore(persistedReducer, state ,applyMiddleware(...[sagaMiddleWare]));
-   return store;
-}
+process.env.NODE_ENV == "development" && middlewares.push(reduxLogger);
 
-export const reduxConfig = () => {
-    const store = makeStore();
-    let persistor = persistStore(store);
+const persistedReducer = persistReducer(persistedConfig, rootReducers)
+const configureStore = (initialState = {})  =>  createStore(persistedReducer,initialState,applyMiddleware(...middlewares));
+export const persistor = persistStore(configureStore());
+
+
+
+const makeStore = (context) => {
+    const store = configureStore(context);
     sagaMiddleWare.run(rootSagas);
-    return {store, persistor};
+    return store;
 }
 
-export const reduxWrapper = createWrapper(makeStore);
+export const reduxWrapper = createWrapper(makeStore, { debug: false });
 
 

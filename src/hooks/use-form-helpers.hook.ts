@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-interface FormHelperType {
+export interface FormHelperType {
     isLoading:boolean,
     message: string;
     success: boolean;

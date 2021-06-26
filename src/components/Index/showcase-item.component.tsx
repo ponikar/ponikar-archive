@@ -1,18 +1,22 @@
-import { FC } from "react"
-import Image from "next/image"
-import Link from "next/link";
+import { FC } from 'react';
+import Image from 'next/image';
+import { ProjectProps } from '../../Store/Reducers/ponikar/projects/projects.types';
+import FancyLink from '../Link/link.component';
 
-interface ShowcaseItemProps {
-    src?: string;
-    href?: string;
-}
-
-const ShowcaseItem :FC<ShowcaseItemProps> = ({ src = "/assets/images/showcase.jpg", href = "#" }) => {
-    return <Link href={href}>
-        <section className="w-full" style={{ height: "200px" }}>
-            <Image src={src} width={1000} height={1000} objectFit="contain" />
-        </section>
-    </Link>
-}
+const ShowcaseItem: FC<ProjectProps> = ({ images, title, id }) => {
+    return (
+        <FancyLink href={`/projects/${id}`}>
+            <section>
+                <Image
+                    alt={title}
+                    src={images[0] || '/assets/images/showcase.jpg'}
+                    width={1000}
+                    height={1000}
+                    objectFit="cover"
+                />
+            </section>
+        </FancyLink>
+    );
+};
 
 export default ShowcaseItem;
